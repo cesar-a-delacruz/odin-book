@@ -7,12 +7,6 @@
   --color-secondary: grey;
   --color-secondary-dark: black;
 
-  --color-background-dark: rgb(10, 10, 10);
-  --color-background-light: rgb(235, 235, 235);
-
-  --color-text-dark: white;
-  --color-text-light: black;
-
   --font-size: 0.75rem;
   --font-size-1: 1rem;
   --font-size-2: 1.25rem;
@@ -23,8 +17,13 @@
   --svg-size-1: 30px;
   --svg-size-2: 72px;
 
-  --image-size: 100px;
   --input-width: 250px;
+
+  --size: 600px;
+  --size-1: 450px;
+  --size-2: 300px;
+  --size-3: 150px;
+  --size-4: 75px;
 
   --padding: 0.5rem;
   --padding-1: 1rem;
@@ -44,4 +43,25 @@
 
   --border-radius: 0.5rem;
   --border-radius-1: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: rgb(10, 10, 10);
+    --color-background-1: rgb(18, 18, 18);
+    --color-background-2: rgb(35, 35, 35);
+    --color-background-3: rgb(46, 46, 46);
+    --color-background-4: rgb(57, 57, 57);
+    --color-text: white;
+    --color-text-1: rgb(199, 199, 199);
+    --color-text-2: rgb(179, 179, 179);
+    --border: 1px rgb(70, 70, 70) solid;
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-background: rgb(235, 235, 235);
+    --color-text: black;
+    --border: 1px rgb(154, 154, 154) solid;
+  }
 }

@@ -1,3 +1,4 @@
+import styles from "./styles/Menu.module.css";
 import { useContext, useRef } from "react";
 import MenuContext from "@/contexts/MenuContext";
 import { CurrentMenuContext } from "@/contexts/CurrentMenuContext";

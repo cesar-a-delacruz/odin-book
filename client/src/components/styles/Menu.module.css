@@ -1,0 +1,68 @@
+.container {
+  overflow: visible;
+  anchor-scope: --menu;
+}
+
+.menu {
+  background-color: var(--color-background-2);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-1);
+  overflow: hidden;
+  width: max-content;
+  position: absolute;
+  margin-top: var(--margin);
+  margin-right: var(--margin);
+  animation: load forwards 250ms;
+  position-anchor: --menu;
+  top: anchor(bottom);
+  position-area: bottom;
+  z-index: 1;
+
+  .option {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: var(--gap);
+    padding: var(--padding);
+
+    &:hover {
+      background-color: var(--color-background-3);
+    }
+    &:active {
+      background-color: var(--color-background-4);
+    }
+
+    svg {
+      width: var(--svg-size);
+      height: var(--svg-size);
+    }
+  }
+}
+
+.button {
+  font-size: var(--font-size-2);
+  font-weight: bold;
+  border-radius: var(--border-radius-1);
+  padding: var(--padding);
+  line-height: var(--font-size);
+  text-align: center;
+  anchor-name: --menu;
+  background-color: var(--color-background-2);
+
+  &:hover {
+    background-color: var(--color-background-3);
+    cursor: pointer;
+  }
+  &:active {
+    background-color: var(--color-background-4);
+  }
+}
+
+@keyframes load {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

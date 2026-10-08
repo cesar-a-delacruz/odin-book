@@ -1,6 +1,8 @@
-import { Outlet } from "react-router-dom";
 import "@/utils/css/layouts.css";
 import styles from "./styles/Default.module.css";
+import { Outlet } from "react-router-dom";
+import Menu from "@/components/Menu";
+import MenuContext from "@/contexts/MenuContext";
 
 export default function Default() {
   return (
@@ -9,6 +11,19 @@ export default function Default() {
         <h1 onClick={() => location.assign("/")}>
           {import.meta.env.VITE_TITLE}
         </h1>
+
+        <MenuContext
+          value={{
+            options: [
+              { text: "View profile", handler: () => {} },
+              { text: "Logout", handler: () => {} },
+              { text: "Delete account", handler: () => {} },
+            ],
+            render: true,
+          }}
+        >
+          <Menu />
+        </MenuContext>
       </header>
       <main>
         <Outlet />
