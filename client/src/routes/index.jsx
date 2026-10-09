@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import Default from "@/layouts/Default";
+import Home from "@/pages/Home";
 
 export default createBrowserRouter([
   {
@@ -10,6 +11,12 @@ export default createBrowserRouter([
   {
     path: "/",
     element: <Default />,
-    children: [],
+    children: [
+      {
+        path: "",
+        index: true,
+        element: <Home />,
+      },
+    ],
   },
 ]);
