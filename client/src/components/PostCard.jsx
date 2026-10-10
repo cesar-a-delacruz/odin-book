@@ -1,7 +1,7 @@
-import styles from "./styles/Post.module.css";
+import styles from "./styles/PostCard.module.css";
 import Avatar from "./Avatar";
 
-export default function Post({ data }) {
+export default function PostCard({ data }) {
   return (
     <div className={styles.post}>
       <div className={styles.user}>
