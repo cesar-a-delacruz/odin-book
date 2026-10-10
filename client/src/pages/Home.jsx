@@ -2,7 +2,7 @@ import styles from "./styles/Home.module.css";
 import { useEffect, useState } from "react";
 import dbFaker from "@/api/dbFaker";
 import UserList from "@/components/UserList";
-import PostList from "@/components/PostList";
+import Post from "@/components/Post";
 
 export default function Home() {
   document.title = `${import.meta.env.VITE_TITLE}: Home`;
@@ -32,7 +32,9 @@ export default function Home() {
         <UserList users={followed} />
       </div>
       <div className={styles.feed}>
-        <PostList posts={feed} />
+        {feed.map((f) => (
+          <Post data={f} key={f.id} />
+        ))}
       </div>
       <div className={styles.more}>
         <h2>More users</h2>

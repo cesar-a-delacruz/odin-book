@@ -17,6 +17,7 @@
     border-left: var(--border);
   }
   .feed {
+    gap: var(--gap-1);
     flex-grow: 1;
   }
 }
