@@ -1,0 +1,19 @@
+.postPage {
+  display: flex;
+  flex-grow: 1;
+
+  .post,
+  .comments {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--padding-1);
+    flex-grow: 1;
+  }
+  .post {
+    border-right: var(--border);
+  }
+  .comments {
+    gap: var(--gap-1);
+  }
+}

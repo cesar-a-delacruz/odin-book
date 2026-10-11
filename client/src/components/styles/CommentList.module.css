@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-1);
+  background-color: var(--color-background-1);
+  border-radius: var(--border-radius-1);
+  padding: var(--padding);
+  width: 75%;
+
+  .comment {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-1);
+    font-size: var(--font-size-1);
+    padding: var(--padding);
+    border-radius: var(--border-radius-1);
+
+    &:hover {
+      background-color: var(--color-background-2);
+    }
+    &:active {
+      background-color: var(--color-background-3);
+    }
+
+    .text {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+
+      .username {
+        font-weight: bold;
+      }
+
+      .content {
+        max-width: var(--size-1);
+        width: var(--size-1);
+        min-width: var(--size-2);
+      }
+
+      .date {
+        color: var(--color-text-2);
+      }
+    }
+  }
+}
