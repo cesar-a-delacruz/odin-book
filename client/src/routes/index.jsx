@@ -6,6 +6,7 @@ import Post from "@/pages/Post";
 import Profile from "@/pages/Profile";
 import Auth from "@/layouts/Auth";
 import Register from "@/pages/Register";
+import Login from "@/pages/Login";
 
 export default createBrowserRouter([
   {
@@ -34,6 +35,9 @@ export default createBrowserRouter([
   {
     path: "/",
     element: <Auth />,
-    children: [{ path: "register", element: <Register /> }],
+    children: [
+      { path: "register", element: <Register /> },
+      { path: "login", element: <Login /> },
+    ],
   },
 ]);
