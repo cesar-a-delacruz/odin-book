@@ -1,6 +1,6 @@
 .post {
   padding: var(--padding-1);
-  background-color: var(--color-background-1);
+  background-color: var(--color-background-2);
   border-radius: var(--border-radius-1);
   max-width: var(--size);
   min-width: var(--size-2);

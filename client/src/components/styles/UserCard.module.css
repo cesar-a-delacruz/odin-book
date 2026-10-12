@@ -6,6 +6,7 @@
   padding: var(--padding-1);
   background-color: var(--color-background-1);
   border-radius: var(--border-radius-1);
+  border: var(--border);
   max-width: 75%;
   min-width: var(--size-2);
 
@@ -34,10 +35,11 @@
 
 .stats {
   display: flex;
-  background-color: var(--color-background-1);
+  background-color: var(--color-background-2);
   gap: var(--gap-4);
   padding: var(--padding-1);
   border-radius: var(--border-radius-1);
+  border: var(--border);
 
   .stat {
     display: flex;
