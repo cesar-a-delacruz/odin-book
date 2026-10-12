@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./styles/TextForm.module.css";
 import { clean } from "@/utils/js/objects";
 
-export default function TextForm({ attributes, hiddenData }) {
+export default function TextForm({ attributes, hiddenData = [] }) {
   const [data, setData] = useState({});
   const [disableSubmit, setDisableSubmit] = useState(true);
 

@@ -5,6 +5,8 @@ export default async function () {
   faker.seed(12);
   const users = faker.helpers.multiple(dataFakers.userFaker, { count: 4 });
 
+  users[1].bio = null;
+
   const followers = [
     {
       id: users[3].id,

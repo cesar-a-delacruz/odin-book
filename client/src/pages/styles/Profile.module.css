@@ -1,0 +1,28 @@
+.profilePage {
+  display: flex;
+
+  .user,
+  .posts,
+  .comments {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--padding-1);
+  }
+
+  .user {
+    border-right: var(--border);
+    gap: var(--gap-1);
+  }
+  .comments {
+    border-left: var(--border);
+  }
+  .posts {
+    gap: var(--gap-1);
+    flex-grow: 1;
+
+    > div:first-of-type {
+      width: 100%;
+    }
+  }
+}

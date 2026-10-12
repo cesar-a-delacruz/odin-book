@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import Default from "@/layouts/Default";
 import Home from "@/pages/Home";
 import Post from "@/pages/Post";
+import Profile from "@/pages/Profile";
 
 export default createBrowserRouter([
   {
@@ -21,6 +22,10 @@ export default createBrowserRouter([
       {
         path: "/post",
         element: <Post />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
       },
     ],
   },

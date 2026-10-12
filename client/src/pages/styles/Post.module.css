@@ -15,5 +15,9 @@
   }
   .comments {
     gap: var(--gap-1);
+
+    > div:first-of-type {
+      width: 66%;
+    }
   }
 }
