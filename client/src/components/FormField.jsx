@@ -1,3 +1,5 @@
+import styles from "./styles/FormField.module.css";
+
 export default function FormField({
   properties,
   value,
@@ -9,7 +11,7 @@ export default function FormField({
   return props.type === "hidden" ? (
     <>{renderInput()}</>
   ) : (
-    <div>
+    <div className={styles.field}>
       {label && <label htmlFor={props.id}>{label}:</label>}
       {renderInput()}
     </div>
@@ -57,7 +59,10 @@ export default function FormField({
               }}
               tabIndex={0}
             >
-              <div style={{ display: readOnly ? "none" : "flex" }}>
+              <div
+                className={styles.icon}
+                style={{ display: readOnly ? "none" : "flex" }}
+              >
                 Upload and image
               </div>
             </div>

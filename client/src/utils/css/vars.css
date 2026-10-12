@@ -39,8 +39,8 @@
   --margin-1: 1.5rem;
   --margin-2: 2rem;
 
-  --border-size: 0.1rem;
-  --border-size-1: 0.2rem;
+  --border-size: 1px;
+  --border-size-1: 2px;
 
   --border-radius: 0.5rem;
   --border-radius-1: 1rem;
@@ -57,6 +57,7 @@
     --color-text-1: rgb(199, 199, 199);
     --color-text-2: rgb(179, 179, 179);
     --border: 1px rgb(70, 70, 70) solid;
+    --outline: 1px white solid;
   }
 }
 @media (prefers-color-scheme: light) {

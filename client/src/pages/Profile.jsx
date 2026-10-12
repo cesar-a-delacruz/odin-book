@@ -7,7 +7,7 @@ import UserCard from "@/components/UserCard";
 import TextForm from "@/components/TextForm";
 
 export default function Profile() {
-  document.title = `${import.meta.env.VITE_TITLE}: Home`;
+  document.title = `${import.meta.env.VITE_TITLE}: Profile`;
   const [user, setUser] = useState({});
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);

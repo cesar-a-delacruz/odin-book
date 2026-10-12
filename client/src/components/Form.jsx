@@ -1,3 +1,4 @@
+import styles from "./styles/Form.module.css";
 import { useEffect, useState } from "react";
 import FormField from "@/components/FormField";
 import { compare, clean } from "@/utils/js/objects";
@@ -18,7 +19,7 @@ export default function Form({
 
   return (
     <form onSubmit={submitHandler}>
-      <div>
+      <div className={styles.fieldsets}>
         {fieldsets.map((fieldset) => (
           <fieldset key={fieldset.legend || ""}>
             {fieldset.legend && <legend>{fieldset.legend}</legend>}
