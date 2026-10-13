@@ -50,7 +50,11 @@ export default function Profile() {
         <UserCard data={user} />
       </div>
       <div className={styles.posts}>
-        <TextForm fields={create[0].fields} actions={[{ icon: "..." }]} />
+        <TextForm
+          fields={create[0].fields}
+          initialData={{}}
+          actions={[{ icon: "..." }]}
+        />
         {posts.map((f) => (
           <PostCard data={f} key={f.id} />
         ))}

@@ -3,19 +3,6 @@
   overflow-x: hidden;
   border-radius: var(--border-radius-1);
 
-  .content {
-    box-sizing: border-box;
-    min-width: 100%;
-    max-width: 100%;
-    min-height: var(--size-4);
-    max-height: var(--size-2);
-    background-color: var(--color-background-2);
-    outline-style: none;
-    border-style: none;
-    padding: var(--padding-1);
-    border-bottom: var(--border);
-  }
-
   .actions {
     padding: var(--padding);
 
