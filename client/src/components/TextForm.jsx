@@ -2,26 +2,38 @@ import { useState } from "react";
 import styles from "./styles/TextForm.module.css";
 import { clean } from "@/utils/js/objects";
 
-export default function TextForm({ attributes, hiddenData = [] }) {
-  const [data, setData] = useState({});
+export default function TextForm({ fields = [], initialData, actions = [] }) {
+  const [data, setData] = useState(initialData);
   const [disableSubmit, setDisableSubmit] = useState(true);
 
   return (
     <div className={styles.textForm}>
-      <textarea
-        className={styles.content}
-        id={attributes.id}
-        placeholder={attributes.placeholder || ""}
-        onChange={(e) =>
-          changeHandler(e.currentTarget.id, e.currentTarget.value)
-        }
-        value={data[attributes.id]}
-      ></textarea>
-      {hiddenData.map((h) => (
-        <input type="hidden" id={h.id} value={h.value} />
-      ))}
+      {fields.map((f) =>
+        f.type === "textarea" ? (
+          <textarea
+            className={styles.content}
+            id={f.id}
+            placeholder={f.placeholder || ""}
+            onChange={(e) =>
+              changeHandler(e.currentTarget.id, e.currentTarget.value)
+            }
+            key={f.id}
+          ></textarea>
+        ) : (
+          <input
+            type={f.type}
+            id={f.id}
+            value={f.type === "hidden" ? initialData[f.id] : ""}
+            style={{ display: "none" }}
+            key={f.id}
+          />
+        ),
+      )}
       <div className={styles.actions}>
         <button disabled={disableSubmit}>...</button>
+        {actions.map((a) => (
+          <button disableddisabled={disableSubmit}>{a.icon}</button>
+        ))}
       </div>
     </div>
   );

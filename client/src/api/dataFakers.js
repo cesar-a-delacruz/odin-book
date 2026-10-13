@@ -18,7 +18,6 @@ export function postFaker() {
     image: faker.image.url(),
     createdAt: faker.date.anytime().toLocaleString(),
     updatedAt: faker.date.anytime().toLocaleString(),
-    password: faker.internet.password(),
     userId: null,
   };
 }
@@ -29,7 +28,6 @@ export function commentFaker() {
     content: faker.lorem.sentence(),
     createdAt: faker.date.anytime().toLocaleString(),
     updatedAt: faker.date.anytime().toLocaleString(),
-    password: faker.internet.password(),
     userId: null,
     postId: null,
   };

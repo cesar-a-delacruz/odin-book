@@ -1,6 +1,7 @@
 import styles from "./styles/Profile.module.css";
 import { useEffect, useState } from "react";
 import dbFaker from "@/api/dbFaker";
+import { create } from "@/fieldsets/postFieldsets";
 import PostCard from "@/components/PostCard";
 import CommentList from "@/components/CommentList";
 import UserCard from "@/components/UserCard";
@@ -49,12 +50,7 @@ export default function Profile() {
         <UserCard data={user} />
       </div>
       <div className={styles.posts}>
-        <TextForm
-          attributes={{
-            id: "content",
-            placeholder: "New post...",
-          }}
-        />
+        <TextForm fields={create[0].fields} actions={[{ icon: "..." }]} />
         {posts.map((f) => (
           <PostCard data={f} key={f.id} />
         ))}

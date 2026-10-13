@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./styles/Post.module.css";
 import dbFaker from "@/api/dbFaker";
+import { create } from "@/fieldsets/commentFieldsets";
 import PostCard from "@/components/PostCard";
 import CommentList from "@/components/CommentList";
 import TextForm from "@/components/TextForm";
@@ -32,13 +33,12 @@ export default function Post() {
       <div className={styles.post}>{post && <PostCard data={post} />}</div>
       <div className={styles.comments}>
         <h2>Comments</h2>
-        <TextForm
-          attributes={{
-            id: "content",
-            placeholder: "New comment...",
-          }}
-          hiddenData={[{ id: "postId", value: post ? post.id : "" }]}
-        />
+        {post && (
+          <TextForm
+            fields={create[0].fields}
+            initialData={{ postId: post.id }}
+          />
+        )}
         <CommentList comments={comments} />
       </div>
     </div>
