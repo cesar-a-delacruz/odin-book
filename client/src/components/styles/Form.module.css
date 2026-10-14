@@ -65,3 +65,20 @@ form {
     }
   }
 }
+
+@media (max-aspect-ratio: 3/4) or (max-width: 1024px) {
+  form {
+    .fieldsets {
+      width: min-content;
+
+      fieldset {
+        &:not(:last-of-type) {
+          padding: 0;
+          border: none;
+          padding-bottom: var(--padding-1);
+          border-bottom: var(--border);
+        }
+      }
+    }
+  }
+}

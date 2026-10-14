@@ -17,10 +17,12 @@
         cursor: pointer;
         margin: var(--margin) 0;
         text-align: center;
+        width: max-content;
       }
 
       p {
         font-size: var(--font-size-2);
+        margin: 0;
       }
     }
 
@@ -43,6 +45,27 @@
 
     p {
       font-size: var(--font-size);
+    }
+  }
+}
+
+@media (max-aspect-ratio: 3/4) or (max-width: 1024px) {
+  .auth {
+    .content {
+      flex-direction: column;
+
+      aside {
+        border: none;
+        border-bottom: var(--border);
+
+        h1 {
+          font-size: var(--size-5);
+        }
+
+        p {
+          font-size: var(--font-size-1);
+        }
+      }
     }
   }
 }
