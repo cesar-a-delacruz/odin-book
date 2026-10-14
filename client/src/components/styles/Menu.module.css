@@ -6,6 +6,7 @@
 .menu {
   background-color: var(--color-background-2);
   border-radius: var(--border-radius);
+  border: var(--border);
   font-size: var(--font-size-1);
   overflow: hidden;
   width: max-content;
