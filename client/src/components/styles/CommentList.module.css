@@ -28,9 +28,7 @@
       }
 
       .content {
-        max-width: var(--size-1);
-        width: var(--size-1);
-        min-width: var(--size-2);
+        overflow-wrap: break-word;
       }
 
       .date {

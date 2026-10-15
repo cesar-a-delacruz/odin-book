@@ -14,15 +14,36 @@
     border-right: var(--border);
     gap: var(--gap-1);
   }
-  .comments {
-    border-left: var(--border);
-  }
   .posts {
     gap: var(--gap-1);
     flex-grow: 1;
 
     > div:first-of-type {
       width: 100%;
+    }
+  }
+  .comments {
+    border-left: var(--border);
+  }
+}
+
+@media (max-aspect-ratio: 3/4) or (max-width: 1024px) {
+  .profilePage {
+    flex-direction: column;
+
+    .user {
+      border: none;
+      border-bottom: var(--border);
+    }
+
+    .posts {
+      > div:first-of-type {
+        width: 66%;
+      }
+    }
+
+    .comments {
+      display: none;
     }
   }
 }

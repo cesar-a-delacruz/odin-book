@@ -1,7 +1,6 @@
 .postPage {
   display: flex;
   flex-grow: 1;
-
   .post,
   .comments {
     display: flex;
@@ -18,6 +17,18 @@
 
     > div:first-of-type {
       width: 66%;
+    }
+  }
+}
+
+@media (max-aspect-ratio: 3/4) or (max-width: 1024px) {
+  .postPage {
+    flex-direction: column;
+
+    .comments {
+      > div:first-of-type {
+        width: 66%;
+      }
     }
   }
 }
