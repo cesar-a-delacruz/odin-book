@@ -5,6 +5,8 @@
   background-color: var(--color-background-2);
   border-radius: var(--border-radius-1);
   padding: var(--padding);
+  min-width: min-content;
+  max-width: 66%;
 
   .user {
     display: flex;
@@ -29,11 +31,9 @@
       }
 
       .bio {
-        max-width: var(--size-2);
         overflow: hidden;
-        text-overflow: ellipsis;
+        max-height: var(--font-size-1);
         overflow-wrap: break-word;
-        white-space: nowrap;
       }
     }
 

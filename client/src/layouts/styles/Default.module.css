@@ -9,6 +9,9 @@
   }
 
   header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
     display: flex;
     justify-content: space-between;
     padding: 0 var(--padding-1);
@@ -21,6 +24,9 @@
   }
 
   footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
     border-top: var(--border);
 
     p {
