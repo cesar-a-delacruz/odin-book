@@ -1,10 +1,14 @@
 import "@/utils/css/layouts.css";
 import styles from "./styles/Default.module.css";
 import { Outlet } from "react-router-dom";
+import { useContext } from "react";
 import Menu from "@/components/Menu";
 import MenuContext from "@/contexts/MenuContext";
+import { ThemeContext } from "@/contexts/ThemeContext";
 
 export default function Default() {
+  const { changeTheme } = useContext(ThemeContext);
+
   return (
     <div className={`layout ${styles.default}`}>
       <header>
@@ -15,6 +19,7 @@ export default function Default() {
         <MenuContext
           value={{
             options: [
+              { text: "Change theme", handler: changeTheme },
               { text: "View profile", handler: () => {} },
               { text: "Logout", handler: () => {} },
               { text: "Delete account", handler: () => {} },

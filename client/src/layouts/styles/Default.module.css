@@ -36,7 +36,6 @@
 
   main {
     background-color: var(--color-background);
-    box-shadow: inset 0px 2px 2px black;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
