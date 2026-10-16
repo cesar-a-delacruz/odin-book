@@ -1,5 +1,6 @@
 import styles from "./styles/PostCard.module.css";
 import Avatar from "./Avatar";
+import Image from "./Image";
 
 export default function PostCard({ data }) {
   return (
@@ -9,7 +10,10 @@ export default function PostCard({ data }) {
         <span className={styles.username}>@{data.user.username}</span>
       </div>
       <p>{data.content}</p>
-      {data.image && <img src={data.image} alt="post's image" />}
+      {data.image && (
+        <Image src={data.image} alt="post's image" className={styles.image} />
+      )}
+
       <div className={styles.footer}>
         <div className={styles.stats}>
           <div className={styles.stat}>

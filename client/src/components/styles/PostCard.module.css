@@ -16,7 +16,7 @@
     }
   }
 
-  > img {
+  .image {
     border-radius: var(--border-radius-1);
     width: 100%;
     height: auto;

@@ -1,11 +1,15 @@
 import styles from "./styles/UserCard.module.css";
-import Avatar from "./Avatar";
+import Image from "./Image";
 
 export default function UserCard({ data }) {
   return (
     <>
       <div className={styles.user}>
-        <Avatar src={data.image} alt={data.name} />
+        <Image
+          src={data.image}
+          alt={`${data.name}'s avatar`}
+          className={styles.image}
+        />
         <span className={styles.username}>@{data.username}</span>
         <span className={styles.name}>{data.name}</span>
         {data.bio && <p>{data.bio}</p>}
