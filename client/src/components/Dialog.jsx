@@ -1,7 +1,9 @@
+import styles from "./styles/Dialog.module.css";
+
 export default function Dialog({ name, ref, children }) {
   return (
     <dialog ref={ref}>
-      <div>
+      <div className={styles.top}>
         {name && <h2>{name}</h2>}
         <button
           onClick={(event) => {
@@ -12,7 +14,7 @@ export default function Dialog({ name, ref, children }) {
           X
         </button>
       </div>
-      <div>{children}</div>
+      <div className={styles.bottom}>{children}</div>
     </dialog>
   );
 }

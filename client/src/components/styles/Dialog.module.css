@@ -1,0 +1,75 @@
+dialog:open {
+  background-color: rgba(0, 0, 0, 0);
+  border-style: none;
+  animation: load forwards 500ms;
+  max-height: 90vh;
+  max-width: 90vw;
+  overflow: hidden;
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.502);
+    backdrop-filter: blur(2px);
+  }
+}
+
+.top {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: var(--gap-3);
+  padding: var(--padding-1);
+
+  h2,
+  button,
+  svg {
+    margin: 0 !important;
+  }
+
+  button {
+    background-color: var(--color-background-2);
+    padding: var(--padding) var(--padding-1);
+    border: var(--border);
+    border-radius: var(--border-radius);
+
+    &:hover {
+      background-color: var(--color-background-3);
+    }
+    &:active {
+      background-color: var(--color-background-4);
+    }
+    &:focus {
+      border-color: var(--color-text);
+      outline: var(--outline);
+    }
+  }
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-background-2);
+  padding: var(--padding-1);
+  border-radius: var(--border-radius);
+
+  & h3 {
+    margin: 0;
+  }
+
+  & p {
+    font-size: var(--font-size-2);
+  }
+
+  & button {
+    width: fit-content;
+  }
+}
+
+@keyframes load {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

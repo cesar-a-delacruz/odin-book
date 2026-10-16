@@ -1,0 +1,14 @@
+.image {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  dialog {
+    img {
+      width: auto;
+      max-width: 80vw;
+      max-height: 80vh;
+      border-radius: var(--border-radius);
+    }
+  }
+}
