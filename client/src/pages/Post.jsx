@@ -5,16 +5,18 @@ import { create } from "@/fieldsets/commentFieldsets";
 import PostCard from "@/components/PostCard";
 import CommentList from "@/components/CommentList";
 import TextForm from "@/components/TextForm";
+import { useLocation } from "react-router-dom";
 
 export default function Post() {
   document.title = `${import.meta.env.VITE_TITLE}: Post`;
+  const locationState = useLocation().state;
   const [post, setPost] = useState();
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
     (async () => {
       const db = await dbFaker();
-      const dbPost = db.posts[0];
+      const dbPost = db.posts.find((p) => p.id === locationState.id);
       dbPost.user = db.users.find((u) => u.id === dbPost.userId);
       dbPost.likes = db.likes.filter((l) => l.postId === dbPost.id).length;
       const dbComments = db.comments.filter((c) => {

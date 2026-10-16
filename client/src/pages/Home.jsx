@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import dbFaker from "@/api/dbFaker";
 import UserList from "@/components/UserList";
 import PostCard from "@/components/PostCard";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   document.title = `${import.meta.env.VITE_TITLE}: Home`;
+  const navigate = useNavigate();
   const [followed, setFollowed] = useState([]);
   const [feed, setFeed] = useState([]);
   const [more, setMore] = useState([]);
@@ -33,7 +35,11 @@ export default function Home() {
       </div>
       <div className={styles.feed}>
         {feed.map((f) => (
-          <PostCard data={f} key={f.id} />
+          <PostCard
+            data={f}
+            key={f.id}
+            clickHandler={() => navigate("/post", { state: { id: f.id } })}
+          />
         ))}
       </div>
       <div className={styles.more}>

@@ -20,8 +20,19 @@ export default function Default() {
           value={{
             options: [
               { text: "Change theme", handler: changeTheme },
-              { text: "View profile", handler: () => {} },
-              { text: "Logout", handler: () => {} },
+              {
+                text: "View profile",
+                handler: () => {
+                  window.history.replaceState({}, "");
+                  location.assign("/profile");
+                },
+              },
+              {
+                text: "Logout",
+                handler: () => {
+                  location.replace("/login");
+                },
+              },
               { text: "Delete account", handler: () => {} },
             ],
             render: true,

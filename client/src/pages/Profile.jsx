@@ -1,5 +1,6 @@
 import styles from "./styles/Profile.module.css";
 import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import dbFaker from "@/api/dbFaker";
 import { create } from "@/fieldsets/postFieldsets";
 import PostCard from "@/components/PostCard";
@@ -9,6 +10,8 @@ import TextForm from "@/components/TextForm";
 
 export default function Profile() {
   document.title = `${import.meta.env.VITE_TITLE}: Profile`;
+  const navigate = useNavigate();
+  const locationState = useLocation().state;
   const [user, setUser] = useState({});
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
@@ -16,7 +19,9 @@ export default function Profile() {
   useEffect(() => {
     (async () => {
       const db = await dbFaker();
-      const dbUser = db.users[0];
+      const dbUser = locationState
+        ? db.users.find((u) => u.id === locationState.id)
+        : db.users[0];
       dbUser.followers = 0;
       dbUser.following = 0;
       db.followers.forEach((f) => {
@@ -56,7 +61,11 @@ export default function Profile() {
           actions={[{ icon: "..." }]}
         />
         {posts.map((f) => (
-          <PostCard data={f} key={f.id} />
+          <PostCard
+            data={f}
+            key={f.id}
+            clickHandler={() => navigate("/post", { state: { id: f.id } })}
+          />
         ))}
       </div>
       <div className={styles.comments}>

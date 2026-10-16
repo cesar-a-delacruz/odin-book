@@ -1,13 +1,24 @@
 import styles from "./styles/PostCard.module.css";
+import { useNavigate } from "react-router-dom";
 import Avatar from "./Avatar";
 import Image from "./Image";
 
-export default function PostCard({ data }) {
+export default function PostCard({ data, clickHandler = () => {} }) {
+  const navigate = useNavigate();
+
   return (
-    <div className={styles.post}>
+    <div className={styles.post} onClick={() => clickHandler()}>
       <div className={styles.user}>
         <Avatar src={data.user.image} alt={data.user.name} />
-        <span className={styles.username}>@{data.user.username}</span>
+        <span
+          className={styles.username}
+          onClick={(event) => {
+            navigate("/profile", { state: { id: data.user.id } });
+            event.stopPropagation();
+          }}
+        >
+          @{data.user.username}
+        </span>
       </div>
       <p>{data.content}</p>
       {data.image && (
