@@ -18,7 +18,13 @@ export default function UserList({ users, action }) {
             <span className={styles.bio}>{user.bio}</span>
           </div>
           {action && (
-            <div className={styles.action}>
+            <div
+              className={styles.action}
+              onClick={(event) => {
+                action.handler();
+                event.stopPropagation();
+              }}
+            >
               {action.icon}
               <span>{action.text}</span>
             </div>

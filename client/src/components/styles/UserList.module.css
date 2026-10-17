@@ -15,6 +15,7 @@
     font-size: var(--font-size-1);
     padding: var(--padding);
     border-radius: var(--border-radius-1);
+    cursor: pointer;
 
     &:active {
       background-color: var(--color-background-3);
@@ -41,10 +42,13 @@
       display: flex;
       gap: var(--gap);
       font-size: var(--font-size-1);
-      cursor: pointer;
 
       * {
         color: var(--color-text-1);
+
+        &:hover {
+          color: var(--color-text-2);
+        }
       }
     }
   }
