@@ -2,7 +2,7 @@
   header,
   footer {
     text-align: center;
-    background-color: var(--color-background);
+    background-color: var(--color-background-1);
     display: flex;
     justify-content: center;
     align-items: center;

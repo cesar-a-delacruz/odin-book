@@ -41,7 +41,7 @@
 
 :root[data-theme="dark"] {
   --color-background: rgb(10, 10, 10);
-  --color-background-1: rgb(18, 18, 18);
+  --color-background-1: rgb(24, 24, 24);
   --color-background-2: rgb(35, 35, 35);
   --color-background-3: rgb(46, 46, 46);
   --color-background-4: rgb(64, 64, 64);
@@ -55,7 +55,7 @@
 
 :root[data-theme="ligth"] {
   --color-background: rgb(245, 245, 245);
-  --color-background-1: rgb(237, 237, 237);
+  --color-background-1: rgb(230, 230, 230);
   --color-background-2: rgb(220, 220, 220);
   --color-background-3: rgb(209, 209, 209);
   --color-background-4: rgb(186, 186, 186);
