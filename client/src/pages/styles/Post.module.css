@@ -1,6 +1,7 @@
 .postPage {
   display: flex;
   flex-grow: 1;
+
   .post,
   .comments {
     display: flex;
@@ -11,11 +12,16 @@
   }
   .post {
     border-right: var(--border);
+    justify-content: center;
+    align-items: center;
   }
   .comments {
     gap: var(--gap-1);
 
     > div:first-of-type {
+      width: 66%;
+    }
+    > div:nth-of-type(2) {
       width: 66%;
     }
   }
@@ -25,6 +31,10 @@
   .postPage {
     flex-direction: column;
 
+    .post {
+      border: none;
+      border-bottom: var(--border);
+    }
     .comments {
       > div:first-of-type {
         width: 66%;

@@ -9,6 +9,7 @@
     flex-direction: column;
     align-items: center;
     padding: var(--padding-1);
+    width: 33vw;
   }
   .followed,
   .more {
@@ -31,6 +32,11 @@
 
 @media (max-aspect-ratio: 3/4) or (max-width: 1024px) {
   .homePage {
+    .followed,
+    .more,
+    .feed {
+      width: unset;
+    }
     .followed,
     .more {
       display: none;

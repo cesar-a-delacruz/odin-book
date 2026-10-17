@@ -60,13 +60,17 @@ export default function Profile() {
           initialData={{}}
           actions={[{ icon: "..." }]}
         />
-        {posts.map((f) => (
-          <PostCard
-            data={f}
-            key={f.id}
-            clickHandler={() => navigate("/post", { state: { id: f.id } })}
-          />
-        ))}
+        {posts.length ? (
+          posts.map((f) => (
+            <PostCard
+              data={f}
+              key={f.id}
+              clickHandler={() => navigate("/post", { state: { id: f.id } })}
+            />
+          ))
+        ) : (
+          <p className={styles.empty}>No posts yet</p>
+        )}
       </div>
       <div className={styles.comments}>
         <h2>Recent comments</h2>
