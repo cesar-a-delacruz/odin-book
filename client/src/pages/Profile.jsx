@@ -51,10 +51,10 @@ export default function Profile() {
 
   return (
     <div className={styles.profilePage}>
-      <div className={styles.user}>
+      <section className={styles.user}>
         <UserCard data={user} />
-      </div>
-      <div className={styles.posts}>
+      </section>
+      <section className={styles.posts}>
         <TextForm
           fields={create[0].fields}
           initialData={{}}
@@ -71,11 +71,11 @@ export default function Profile() {
         ) : (
           <p className={styles.empty}>No posts yet</p>
         )}
-      </div>
-      <div className={styles.comments}>
+      </section>
+      <section className={styles.comments}>
         <h2>Recent comments</h2>
         <CommentList comments={comments} />
-      </div>
+      </section>
     </div>
   );
 }

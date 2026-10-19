@@ -2,9 +2,7 @@
   display: flex;
   min-height: 100%;
 
-  .user,
-  .posts,
-  .comments {
+  section {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,14 +10,22 @@
     width: 33vw;
   }
 
+  .user,
+  .comments {
+    > * {
+      position: sticky;
+    }
+  }
+
   .user {
     border-right: var(--border);
-    gap: var(--gap-1);
 
-    > div:first-of-type {
+    > div {
+      top: 10%;
       width: 90%;
     }
   }
+
   .posts {
     gap: var(--gap-1);
     flex-grow: 1;
@@ -32,10 +38,16 @@
       color: var(--color-text-2);
     }
   }
+
   .comments {
     border-left: var(--border);
 
+    h2 {
+      top: 10%;
+    }
+
     > div:first-of-type {
+      top: 15%;
       width: 90%;
     }
   }
@@ -45,11 +57,10 @@
   .profilePage {
     flex-direction: column;
 
-    .user,
-    .posts,
-    .comments {
+    section {
       width: unset;
     }
+
     .user {
       border: none;
       border-bottom: var(--border);
@@ -57,7 +68,7 @@
 
     .posts {
       > div:first-of-type {
-        width: 66%;
+        width: 75%;
       }
     }
 

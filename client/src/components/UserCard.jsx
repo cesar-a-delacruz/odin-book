@@ -3,7 +3,7 @@ import Image from "./Image";
 
 export default function UserCard({ data }) {
   return (
-    <>
+    <div className={styles.container}>
       <div className={styles.user}>
         <Image
           src={data.image}
@@ -28,6 +28,6 @@ export default function UserCard({ data }) {
           <span className={styles.text}>posts</span>
         </div>
       </div>
-    </>
+    </div>
   );
 }

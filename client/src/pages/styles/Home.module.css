@@ -2,29 +2,37 @@
   display: flex;
   justify-content: center;
 
-  .followed,
-  .feed,
-  .more {
+  section {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: var(--padding-1);
     width: 33vw;
   }
+
   .followed,
   .more {
     > * {
       position: sticky;
+    }
+
+    h2 {
       top: 10%;
+    }
+
+    > div {
+      top: 15%;
     }
   }
 
   .followed {
     border-right: var(--border);
   }
+
   .more {
     border-left: var(--border);
   }
+
   .feed {
     gap: var(--gap-1);
   }
@@ -32,15 +40,15 @@
 
 @media (max-aspect-ratio: 3/4) or (max-width: 1024px) {
   .homePage {
-    .followed,
-    .more,
-    .feed {
+    section {
       width: unset;
     }
+
     .followed,
     .more {
       display: none;
     }
+
     .feed {
       padding: var(--padding);
     }

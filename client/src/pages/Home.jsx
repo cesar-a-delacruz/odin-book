@@ -29,11 +29,11 @@ export default function Home() {
 
   return (
     <div className={styles.homePage}>
-      <div className={styles.followed}>
+      <section className={styles.followed}>
         <h2>Followed users</h2>
         <UserList users={followed} />
-      </div>
-      <div className={styles.feed}>
+      </section>
+      <section className={styles.feed}>
         {feed.map((f) => (
           <PostCard
             data={f}
@@ -41,14 +41,14 @@ export default function Home() {
             clickHandler={() => navigate("/post", { state: { id: f.id } })}
           />
         ))}
-      </div>
-      <div className={styles.more}>
+      </section>
+      <section className={styles.more}>
         <h2>More users</h2>
         <UserList
           users={more}
           action={{ text: "Follow", icon: <div>...</div> }}
         />
-      </div>
+      </section>
     </div>
   );
 }

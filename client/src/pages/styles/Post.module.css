@@ -2,25 +2,32 @@
   display: flex;
   flex-grow: 1;
 
-  .post,
-  .comments {
+  section {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     padding: var(--padding-1);
     flex-grow: 1;
   }
+
   .post {
     border-right: var(--border);
     justify-content: center;
-    align-items: center;
+    align-items: start;
+
+    > * {
+      position: sticky;
+      top: 10%;
+    }
   }
+
   .comments {
+    flex-direction: column;
+    align-items: center;
     gap: var(--gap-1);
 
     > div:first-of-type {
       width: 66%;
     }
+
     > div:nth-of-type(2) {
       width: 66%;
     }
@@ -35,9 +42,14 @@
       border: none;
       border-bottom: var(--border);
     }
+
     .comments {
       > div:first-of-type {
-        width: 66%;
+        width: 75%;
+      }
+
+      > div:nth-of-type(2) {
+        width: 75%;
       }
     }
   }

@@ -24,7 +24,6 @@ export default function Post() {
         if (belongsToPost) c.user = db.users.find((u) => u.id === c.userId);
         return belongsToPost;
       });
-      dbPost.comments = dbComments.length;
       setPost(dbPost);
       setComments(dbComments);
     })();
@@ -32,8 +31,10 @@ export default function Post() {
 
   return (
     <div className={styles.postPage}>
-      <div className={styles.post}>{post && <PostCard data={post} />}</div>
-      <div className={styles.comments}>
+      <section className={styles.post}>
+        {post && <PostCard data={post} />}
+      </section>
+      <section className={styles.comments}>
         <h2>Comments</h2>
         {post && (
           <TextForm
@@ -42,7 +43,7 @@ export default function Post() {
           />
         )}
         <CommentList comments={comments} />
-      </div>
+      </section>
     </div>
   );
 }

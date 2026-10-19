@@ -1,63 +1,72 @@
-.user {
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--gap-1);
-  padding: var(--padding-1);
-  background-color: var(--color-background-1);
-  border-radius: var(--border-radius-1);
-  border: var(--border);
-  max-width: 75%;
-  min-width: var(--size-2);
+  gap: var(--gap-3);
 
-  .image {
-    width: var(--size-2);
-    height: auto;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-
-  .username {
-    color: var(--color-text-1);
-  }
-
-  .name {
-    font-size: var(--font-size-2);
-    font-weight: bold;
-  }
-
-  p {
-    margin: 0;
-    background-color: var(--color-background-2);
-    border: var(--border);
-    border-radius: var(--border-radius);
-    padding: var(--padding);
-    min-height: var(--size-4);
-  }
-}
-
-.stats {
-  display: flex;
-  background-color: var(--color-background-2);
-  gap: var(--gap-4);
-  padding: var(--padding-1);
-  border-radius: var(--border-radius-1);
-  border: var(--border);
-
-  .stat {
+  .user {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--gap);
+    gap: var(--gap-1);
+    padding: var(--padding-1);
+    background-color: var(--color-background-1);
+    border-radius: var(--border-radius-1);
+    border: var(--border);
+    max-width: 75%;
+    min-width: var(--size-2);
 
-    .number {
+    .image {
+      width: var(--size-2);
+      height: auto;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .username {
+      color: var(--color-text-1);
+    }
+
+    .name {
       font-size: var(--font-size-2);
       font-weight: bold;
     }
 
-    .text {
-      color: var(--color-text-1);
+    p {
+      margin: 0;
+      background-color: var(--color-background-2);
+      border: var(--border);
+      border-radius: var(--border-radius);
+      padding: var(--padding);
+      min-height: var(--size-4);
+    }
+  }
+
+  .stats {
+    display: flex;
+    width: min-content;
+    background-color: var(--color-background-2);
+    gap: var(--gap-4);
+    padding: var(--padding-1);
+    border-radius: var(--border-radius-1);
+    border: var(--border);
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--gap);
+      flex-grow: 1;
+
+      .number {
+        font-size: var(--font-size-2);
+        font-weight: bold;
+      }
+
+      .text {
+        color: var(--color-text-1);
+      }
     }
   }
 }
