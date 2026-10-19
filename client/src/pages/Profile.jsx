@@ -1,3 +1,4 @@
+import pageStyles from "@/utils/css/modules/defaultPage.module.css";
 import styles from "./styles/Profile.module.css";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -50,7 +51,7 @@ export default function Profile() {
   }, []);
 
   return (
-    <div className={styles.profilePage}>
+    <div className={`${styles.profilePage} ${pageStyles.default}`}>
       <section className={styles.user}>
         <UserCard data={user} />
       </section>

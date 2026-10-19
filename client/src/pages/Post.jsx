@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import pageStyles from "@/utils/css/modules/defaultPage.module.css";
 import styles from "./styles/Post.module.css";
+import { useEffect, useState } from "react";
 import dbFaker from "@/api/dbFaker";
 import { create } from "@/fieldsets/commentFieldsets";
 import PostCard from "@/components/PostCard";
@@ -30,7 +31,7 @@ export default function Post() {
   }, []);
 
   return (
-    <div className={styles.postPage}>
+    <div className={`${styles.postPage} ${pageStyles.default}`}>
       <section className={styles.post}>
         {post && <PostCard data={post} />}
       </section>

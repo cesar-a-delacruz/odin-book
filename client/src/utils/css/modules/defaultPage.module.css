@@ -1,0 +1,19 @@
+.default {
+  display: flex;
+  min-height: 100%;
+
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--padding-1);
+  }
+}
+
+@media (max-aspect-ratio: 3/4) or (max-width: 1024px) {
+  .default {
+    section {
+      width: unset !important;
+    }
+  }
+}

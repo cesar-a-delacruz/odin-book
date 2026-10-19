@@ -1,17 +1,11 @@
 .postPage {
-  display: flex;
-  flex-grow: 1;
-
   section {
-    display: flex;
-    padding: var(--padding-1);
-    flex-grow: 1;
+    width: 50%;
   }
 
   .post {
     border-right: var(--border);
-    justify-content: center;
-    align-items: start;
+    justify-content: start;
 
     > * {
       position: sticky;
@@ -20,8 +14,6 @@
   }
 
   .comments {
-    flex-direction: column;
-    align-items: center;
     gap: var(--gap-1);
 
     > div:first-of-type {

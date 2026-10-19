@@ -1,12 +1,5 @@
 .profilePage {
-  display: flex;
-  min-height: 100%;
-
   section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: var(--padding-1);
     width: 33vw;
   }
 
@@ -56,10 +49,6 @@
 @media (max-aspect-ratio: 3/4) or (max-width: 1024px) {
   .profilePage {
     flex-direction: column;
-
-    section {
-      width: unset;
-    }
 
     .user {
       border: none;

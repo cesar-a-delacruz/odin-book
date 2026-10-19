@@ -1,3 +1,4 @@
+import pageStyles from "@/utils/css/modules/defaultPage.module.css";
 import styles from "./styles/Home.module.css";
 import { useEffect, useState } from "react";
 import dbFaker from "@/api/dbFaker";
@@ -28,7 +29,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className={styles.homePage}>
+    <div className={`${styles.homePage} ${pageStyles.default}`}>
       <section className={styles.followed}>
         <h2>Followed users</h2>
         <UserList users={followed} />
