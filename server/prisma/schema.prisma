@@ -11,3 +11,70 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model User {
+  id        String     @id @default(uuid(7))
+  username  String     @unique @db.VarChar(20)
+  fullname  String     @db.VarChar(40)
+  password  String     @db.Char(60)
+  bio       String?    @db.VarChar(100)
+  image     String?    @db.Text
+  posts     Post[]
+  comments  Comment[]
+  likes     Like[]
+  followers Follower[] @relation(name: "follower_follower_id_fkey")
+  users     Follower[] @relation(name: "follower_user_id_fkey")
+
+  @@index([id])
+  @@map("user")
+}
+
+model Post {
+  id        String    @id @default(uuid(7))
+  content   String    @db.Text
+  image     String?   @db.Text
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  userId    String?   @map("user_id")
+  user      User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
+  comments  Comment[]
+  likes     Like[]
+
+  @@index([userId])
+  @@map("post")
+}
+
+model Comment {
+  id        String   @id @default(uuid(7))
+  content   String   @db.Text
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  userId    String?  @map("user_id")
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  postId    String   @map("post_id")
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([postId])
+  @@map("comment")
+}
+
+model Like {
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postId String @map("post_id")
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@id([userId, postId])
+  @@map("like")
+}
+
+model Follower {
+  followerId String @map("follower_id")
+  follower   User   @relation(fields: [followerId], references: [id], onDelete: Cascade, name: "follower_follower_id_fkey")
+  userId     String @map("user_id")
+  user       User   @relation(fields: [userId], references: [id], onDelete: Cascade, name: "follower_user_id_fkey")
+
+  @@id([followerId, userId])
+  @@map("follower")
+}
