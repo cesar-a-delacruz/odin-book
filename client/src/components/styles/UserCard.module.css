@@ -14,10 +14,11 @@
     border-radius: var(--border-radius-1);
     border: var(--border);
     max-width: 75%;
-    min-width: var(--size-2);
+    min-width: 75%;
 
     .image {
       width: var(--size-2);
+      max-width: 100%;
       height: auto;
       aspect-ratio: 1 / 1;
       object-fit: cover;
@@ -28,7 +29,7 @@
       color: var(--color-text-1);
     }
 
-    .name {
+    .fullname {
       font-size: var(--font-size-2);
       font-weight: bold;
     }

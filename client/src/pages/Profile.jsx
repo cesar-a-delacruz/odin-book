@@ -2,58 +2,39 @@ import pageStyles from "@/utils/css/modules/defaultPage.module.css";
 import styles from "./styles/Profile.module.css";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import dbFaker from "@/api/dbFaker";
 import { create } from "@/fieldsets/postFieldsets";
 import PostCard from "@/components/PostCard";
 import CommentList from "@/components/CommentList";
 import UserCard from "@/components/UserCard";
 import TextForm from "@/components/TextForm";
+import requestHandler from "@/handlers/requestHandler";
 
 export default function Profile() {
   document.title = `${import.meta.env.VITE_TITLE}: Profile`;
   const navigate = useNavigate();
   const locationState = useLocation().state;
-  const [user, setUser] = useState({});
-  const [posts, setPosts] = useState([]);
-  const [comments, setComments] = useState([]);
+  const [profile, setProfile] = useState({});
+  const [profilePosts, setProfilePosts] = useState([]);
+  const [recentComments, setRecentComments] = useState([]);
 
   useEffect(() => {
     (async () => {
-      const db = await dbFaker();
-      const dbUser = locationState
-        ? db.users.find((u) => u.id === locationState.id)
-        : db.users[0];
-      dbUser.followers = 0;
-      dbUser.following = 0;
-      db.followers.forEach((f) => {
-        if (f.userId === dbUser.id) dbUser.followers++;
-        if (f.id === dbUser.id) dbUser.following++;
-      });
-      const posts = db.posts.filter((p) => {
-        const belongsToUser = p.userId === dbUser.id;
-        if (belongsToUser) {
-          p.user = dbUser;
-          p.likes = db.likes.filter((l) => l.postId === p.id).length;
-          p.comments = db.comments.filter((c) => c.postId === p.id).length;
-        }
-        return belongsToUser;
-      });
-      dbUser.posts = posts.length;
-      setUser(dbUser);
-      setPosts(posts);
-      const dbComments = db.comments.filter((c) => {
-        const belongsToUser = c.userId === dbUser.id;
-        if (belongsToUser) c.user = dbUser;
-        return belongsToUser;
-      });
-      setComments(dbComments);
+      const [user, posts, comments] = await Promise.all([
+        requestHandler.get(`user/${locationState.id}`),
+        requestHandler.get(`post/user/${locationState.id}`),
+        requestHandler.get(`comment/user/${locationState.id}`),
+      ]);
+
+      if (user.data) setProfile(user.data);
+      if (posts.data) setProfilePosts(posts.data);
+      if (comments.data) setRecentComments(comments.data);
     })();
   }, []);
 
   return (
     <div className={`${styles.profilePage} ${pageStyles.default}`}>
       <section className={styles.user}>
-        <UserCard data={user} />
+        {Object.keys(profile).length ? <UserCard data={profile} /> : ""}
       </section>
       <section className={styles.posts}>
         <TextForm
@@ -61,12 +42,12 @@ export default function Profile() {
           initialData={{}}
           actions={[{ icon: "..." }]}
         />
-        {posts.length ? (
-          posts.map((f) => (
+        {profilePosts.length ? (
+          profilePosts.map((p) => (
             <PostCard
-              data={f}
-              key={f.id}
-              clickHandler={() => navigate("/post", { state: { id: f.id } })}
+              data={p}
+              key={p.id}
+              clickHandler={() => navigate("/post", { state: { id: p.id } })}
             />
           ))
         ) : (
@@ -75,7 +56,7 @@ export default function Profile() {
       </section>
       <section className={styles.comments}>
         <h2>Recent comments</h2>
-        <CommentList comments={comments} />
+        <CommentList comments={recentComments} />
       </section>
     </div>
   );

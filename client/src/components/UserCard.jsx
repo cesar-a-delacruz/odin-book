@@ -11,20 +11,20 @@ export default function UserCard({ data }) {
           className={styles.image}
         />
         <span className={styles.username}>@{data.username}</span>
-        <span className={styles.name}>{data.name}</span>
+        <span className={styles.fullname}>{data.fullname}</span>
         {data.bio && <p>{data.bio}</p>}
       </div>
       <div className={styles.stats}>
         <div className={styles.stat}>
-          <span className={styles.number}>{data.followers}</span>
+          <span className={styles.number}>{data._count.followers}</span>
           <span className={styles.text}>followers</span>
         </div>
         <div className={styles.stat}>
-          <span className={styles.number}>{data.following}</span>
+          <span className={styles.number}>{data._count.users}</span>
           <span className={styles.text}>following</span>
         </div>
         <div className={styles.stat}>
-          <span className={styles.number}>{data.posts}</span>
+          <span className={styles.number}>{data._count.posts}</span>
           <span className={styles.text}>posts</span>
         </div>
       </div>

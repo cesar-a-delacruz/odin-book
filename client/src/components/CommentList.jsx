@@ -2,7 +2,7 @@ import styles from "./styles/CommentList.module.css";
 import { useNavigate } from "react-router-dom";
 import Avatar from "./Avatar";
 
-export default function CommentList({ comments }) {
+export default function CommentList({ comments, sendToPost = true }) {
   const navigate = useNavigate();
 
   return (
@@ -13,6 +13,7 @@ export default function CommentList({ comments }) {
             className={styles.comment}
             key={comment.id}
             onClick={() => {
+              if (!sendToPost) return;
               navigate("/post", { state: { id: comment.postId } });
             }}
           >
@@ -28,7 +29,9 @@ export default function CommentList({ comments }) {
                 @{comment.user.username}
               </span>
               <p className={styles.content}>{comment.content}</p>
-              <span className={styles.date}>{comment.createdAt}</span>
+              <span className={styles.date}>
+                {new Date(comment.createdAt).toLocaleString()}
+              </span>
             </div>
           </div>
         ))

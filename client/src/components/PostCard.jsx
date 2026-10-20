@@ -8,17 +8,15 @@ export default function PostCard({ data, clickHandler = () => {} }) {
 
   return (
     <div className={styles.post} onClick={() => clickHandler()}>
-      <div className={styles.user}>
+      <div
+        className={styles.user}
+        onClick={(event) => {
+          navigate("/profile", { state: { id: data.user.id } });
+          event.stopPropagation();
+        }}
+      >
         <Avatar src={data.user.image} alt={data.user.name} />
-        <span
-          className={styles.username}
-          onClick={(event) => {
-            navigate("/profile", { state: { id: data.user.id } });
-            event.stopPropagation();
-          }}
-        >
-          @{data.user.username}
-        </span>
+        <span className={styles.username}>@{data.user.username}</span>
       </div>
       <p>{data.content}</p>
       {data.image && (
@@ -29,14 +27,16 @@ export default function PostCard({ data, clickHandler = () => {} }) {
         <div className={styles.stats}>
           <div className={styles.stat}>
             <div>...</div>
-            <span>{data.likes}</span>
+            <span>{data._count.likes}</span>
           </div>
           <div className={styles.stat}>
             <div>...</div>
-            <span>{data.comments}</span>
+            <span>{data._count.comments}</span>
           </div>
         </div>
-        <span className={styles.date}>{data.createdAt}</span>
+        <span className={styles.date}>
+          {new Date(data.createdAt).toLocaleString()}
+        </span>
       </div>
     </div>
   );

@@ -10,12 +10,15 @@ module.exports = {
     .route("delete", "delete", ":id"),
   post: new Router(controllers.post)
     .route("get", "findAll", "")
+    .route("get", "findAllByUser", "user/:userId")
     .route("get", "findOne", ":id")
     .route("post", "create", "")
     .route("put", "update", ":id")
     .route("delete", "delete", ":id"),
   comment: new Router(controllers.comment)
     .route("get", "findAll", "")
+    .route("get", "findAllByUser", "user/:userId")
+    .route("get", "findAllByPost", "post/:postId")
     .route("post", "create", "")
     .route("put", "update", ":id")
     .route("delete", "delete", ":id"),

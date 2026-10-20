@@ -10,10 +10,11 @@
     align-items: center;
     gap: var(--gap-1);
     font-size: var(--font-size-1);
+    cursor: pointer;
+    width: fit-content;
 
     .username {
       font-weight: bold;
-      cursor: pointer;
     }
   }
 

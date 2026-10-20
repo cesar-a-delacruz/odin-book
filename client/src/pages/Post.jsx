@@ -1,49 +1,45 @@
 import pageStyles from "@/utils/css/modules/defaultPage.module.css";
 import styles from "./styles/Post.module.css";
 import { useEffect, useState } from "react";
-import dbFaker from "@/api/dbFaker";
 import { create } from "@/fieldsets/commentFieldsets";
 import PostCard from "@/components/PostCard";
 import CommentList from "@/components/CommentList";
 import TextForm from "@/components/TextForm";
 import { useLocation } from "react-router-dom";
+import requestHandler from "@/handlers/requestHandler";
 
 export default function Post() {
   document.title = `${import.meta.env.VITE_TITLE}: Post`;
   const locationState = useLocation().state;
-  const [post, setPost] = useState();
-  const [comments, setComments] = useState([]);
+  const [currentPost, setCurrentPost] = useState();
+  const [postComments, setPostComments] = useState([]);
 
   useEffect(() => {
     (async () => {
-      const db = await dbFaker();
-      const dbPost = db.posts.find((p) => p.id === locationState.id);
-      dbPost.user = db.users.find((u) => u.id === dbPost.userId);
-      dbPost.likes = db.likes.filter((l) => l.postId === dbPost.id).length;
-      const dbComments = db.comments.filter((c) => {
-        const belongsToPost = c.postId === dbPost.id;
-        if (belongsToPost) c.user = db.users.find((u) => u.id === c.userId);
-        return belongsToPost;
-      });
-      setPost(dbPost);
-      setComments(dbComments);
+      const [post, comments] = await Promise.all([
+        requestHandler.get(`post/${locationState.id}`),
+        requestHandler.get(`comment/post/${locationState.id}`),
+      ]);
+
+      if (post.data) setCurrentPost(post.data);
+      if (comments.data) setPostComments(comments.data);
     })();
   }, []);
 
   return (
     <div className={`${styles.postPage} ${pageStyles.default}`}>
       <section className={styles.post}>
-        {post && <PostCard data={post} />}
+        {currentPost && <PostCard data={currentPost} />}
       </section>
       <section className={styles.comments}>
         <h2>Comments</h2>
-        {post && (
+        {currentPost && (
           <TextForm
             fields={create[0].fields}
-            initialData={{ postId: post.id }}
+            initialData={{ postId: currentPost.id }}
           />
         )}
-        <CommentList comments={comments} />
+        <CommentList comments={postComments} sendToPost={false} />
       </section>
     </div>
   );
