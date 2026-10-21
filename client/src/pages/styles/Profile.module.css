@@ -26,10 +26,6 @@
     > div:first-of-type {
       width: 100%;
     }
-
-    .empty {
-      color: var(--color-text-2);
-    }
   }
 
   .comments {
