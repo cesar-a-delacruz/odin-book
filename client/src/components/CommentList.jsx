@@ -1,14 +1,15 @@
 import styles from "./styles/CommentList.module.css";
 import { useNavigate } from "react-router-dom";
 import Avatar from "./Avatar";
+import Loader from "./Loader";
 
 export default function CommentList({ comments, sendToPost = true }) {
   const navigate = useNavigate();
 
   return (
     <div className={styles.container}>
-      {comments.length ? (
-        comments.map((comment) => (
+      {comments.data ? (
+        comments.data.map((comment) => (
           <div
             className={styles.comment}
             key={comment.id}
@@ -36,7 +37,10 @@ export default function CommentList({ comments, sendToPost = true }) {
           </div>
         ))
       ) : (
-        <p className={styles.empty}>No comments yet</p>
+        <Loader
+          loadingText={"Loading comments..."}
+          errorText={comments.error}
+        />
       )}
     </div>
   );

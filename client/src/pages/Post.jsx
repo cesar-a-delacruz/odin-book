@@ -7,12 +7,13 @@ import CommentList from "@/components/CommentList";
 import TextForm from "@/components/TextForm";
 import { useLocation } from "react-router-dom";
 import requestHandler from "@/handlers/requestHandler";
+import Loader from "@/components/Loader";
 
 export default function Post() {
   document.title = `${import.meta.env.VITE_TITLE}: Post`;
   const locationState = useLocation().state;
-  const [currentPost, setCurrentPost] = useState();
-  const [postComments, setPostComments] = useState([]);
+  const [currentPost, setCurrentPost] = useState({});
+  const [postComments, setPostComments] = useState({});
 
   useEffect(() => {
     (async () => {
@@ -21,24 +22,30 @@ export default function Post() {
         requestHandler.get(`comment/post/${locationState.id}`),
       ]);
 
-      if (post.data) setCurrentPost(post.data);
-      if (comments.data) setPostComments(comments.data);
+      setCurrentPost(post);
+      setPostComments(comments);
     })();
   }, []);
 
   return (
     <div className={`${styles.postPage} ${pageStyles.default}`}>
       <section className={styles.post}>
-        {currentPost && <PostCard data={currentPost} />}
+        {currentPost.data ? (
+          <PostCard data={currentPost.data} />
+        ) : (
+          <Loader
+            loadingText={"Loading post..."}
+            errorText={currentPost.error}
+          />
+        )}
       </section>
       <section className={styles.comments}>
         <h2>Comments</h2>
-        {currentPost && (
-          <TextForm
-            fields={create[0].fields}
-            initialData={{ postId: currentPost.id }}
-          />
-        )}
+        <TextForm
+          fields={create[0].fields}
+          initialData={{ postId: currentPost.id }}
+        />
+
         <CommentList comments={postComments} sendToPost={false} />
       </section>
     </div>

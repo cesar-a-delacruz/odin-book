@@ -5,13 +5,14 @@ import UserList from "@/components/UserList";
 import PostCard from "@/components/PostCard";
 import { useNavigate } from "react-router-dom";
 import requestHandler from "@/handlers/requestHandler";
+import Loader from "@/components/Loader";
 
 export default function Home() {
   document.title = `${import.meta.env.VITE_TITLE}: Home`;
   const navigate = useNavigate();
-  const [followed, setFollowed] = useState([]);
-  const [feed, setFeed] = useState([]);
-  const [more, setMore] = useState([]);
+  const [followed, setFollowed] = useState({});
+  const [feed, setFeed] = useState({});
+  const [more, setMore] = useState({});
 
   useEffect(() => {
     (async () => {
@@ -19,11 +20,9 @@ export default function Home() {
         requestHandler.get("user"),
         requestHandler.get("post"),
       ]);
-      if (users.data) {
-        setFollowed(users.data);
-        setMore(users.data);
-      }
-      if (posts.data) setFeed(posts.data);
+      setFollowed(users);
+      setMore(users);
+      setFeed(posts);
     })();
   }, []);
 
@@ -34,8 +33,8 @@ export default function Home() {
         <UserList users={followed} />
       </section>
       <section className={styles.feed}>
-        {feed.length ? (
-          feed.map((f) => (
+        {feed.data ? (
+          feed.data.map((f) => (
             <PostCard
               data={f}
               key={f.id}
@@ -43,7 +42,7 @@ export default function Home() {
             />
           ))
         ) : (
-          <p className={styles.empty}>No posts yet</p>
+          <Loader loadingText={"Loading posts..."} errorText={feed.error} />
         )}
       </section>
       <section className={styles.more}>

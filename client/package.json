@@ -12,7 +12,8 @@
     "normalize.css": "^8.0.1",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
-    "react-router-dom": "^7.18.4"
+    "react-router-dom": "^7.18.4",
+    "react-spinners": "^0.17.1"
   },
   "devDependencies": {
     "@types/react": "^19.3.0",

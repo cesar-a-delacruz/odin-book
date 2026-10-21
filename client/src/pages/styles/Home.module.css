@@ -30,10 +30,6 @@
 
   .feed {
     gap: var(--gap-1);
-
-    .empty {
-      color: var(--color-text-2);
-    }
   }
 }
 

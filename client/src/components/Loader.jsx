@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
 import styles from "./styles/Loader.module.css";
+import { ClipLoader } from "react-spinners";
 
-export default function Loader(text) {
-  const [message, setMessage] = useState(text);
+export default function Loader({ loadingText, errorText }) {
+  const rootStyles = getComputedStyle(document.documentElement);
+  const color = rootStyles.getPropertyValue("--color-text-1").trim();
 
-  useEffect(() => {
-    setMessage(text);
-  }, [text]);
-
-  return <div className={styles.loader}>{message}</div>;
+  return (
+    <div className={styles.loader}>
+      {!errorText && <ClipLoader color={color} className={styles.spinner} />}
+      <p className={styles.text}>{errorText || loadingText}</p>
+    </div>
+  );
 }

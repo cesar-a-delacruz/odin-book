@@ -8,6 +8,7 @@ import CommentList from "@/components/CommentList";
 import UserCard from "@/components/UserCard";
 import TextForm from "@/components/TextForm";
 import requestHandler from "@/handlers/requestHandler";
+import Loader from "@/components/Loader";
 
 export default function Profile() {
   document.title = `${import.meta.env.VITE_TITLE}: Profile`;
@@ -25,16 +26,20 @@ export default function Profile() {
         requestHandler.get(`comment/user/${locationState.id}`),
       ]);
 
-      if (user.data) setProfile(user.data);
-      if (posts.data) setProfilePosts(posts.data);
-      if (comments.data) setRecentComments(comments.data);
+      setProfile(user);
+      setProfilePosts(posts);
+      setRecentComments(comments);
     })();
   }, []);
 
   return (
     <div className={`${styles.profilePage} ${pageStyles.default}`}>
       <section className={styles.user}>
-        {Object.keys(profile).length ? <UserCard data={profile} /> : ""}
+        {profile.data ? (
+          <UserCard data={profile.data} />
+        ) : (
+          <Loader loadingText={"Loading user..."} errorText={profile.error} />
+        )}
       </section>
       <section className={styles.posts}>
         <TextForm
@@ -42,8 +47,8 @@ export default function Profile() {
           initialData={{}}
           actions={[{ icon: "..." }]}
         />
-        {profilePosts.length ? (
-          profilePosts.map((p) => (
+        {profilePosts.data ? (
+          profilePosts.data.map((p) => (
             <PostCard
               data={p}
               key={p.id}
@@ -51,7 +56,10 @@ export default function Profile() {
             />
           ))
         ) : (
-          <p className={styles.empty}>No posts yet</p>
+          <Loader
+            loadingText={"Loading posts..."}
+            errorText={profilePosts.error}
+          />
         )}
       </section>
       <section className={styles.comments}>
