@@ -1,0 +1,15 @@
+.error {
+  padding: var(--padding);
+  width: fit-content;
+
+  .icon {
+    text-align: center;
+  }
+
+  .text {
+    > * {
+      text-align: center;
+      color: var(--color-text-1);
+    }
+  }
+}

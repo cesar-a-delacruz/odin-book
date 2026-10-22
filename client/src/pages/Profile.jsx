@@ -14,7 +14,9 @@ export default function Profile() {
   document.title = `${import.meta.env.VITE_TITLE}: Profile`;
   const navigate = useNavigate();
   const locationState = useLocation().state;
+
   const initialPosts = use(fetchData(`post/user/${locationState.id}`));
+  if (initialPosts.error) throw Error(initialPosts.error);
   const [posts, setPosts] = useState(initialPosts);
 
   return (

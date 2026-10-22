@@ -2,7 +2,6 @@
   text-align: center;
   font-size: var(--font-size-100);
   font-weight: bold;
-  animation: load infinite 3s;
   padding: var(--padding);
 
   .spinner {

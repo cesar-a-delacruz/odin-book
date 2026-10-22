@@ -13,6 +13,7 @@ export default function Post() {
   document.title = `${import.meta.env.VITE_TITLE}: Post`;
   const locationState = useLocation().state;
   const post = use(fetchData(`post/${locationState.id}`));
+  if (post.error) throw Error(post.error);
 
   return (
     <div className={`${styles.postPage} ${pageStyles.default}`}>

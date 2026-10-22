@@ -7,6 +7,7 @@ import Profile from "@/pages/Profile";
 import Auth from "@/layouts/Auth";
 import Register from "@/pages/Register";
 import Login from "@/pages/Login";
+import ErrorMessage from "@/components/ErrorMessage";
 
 export default createBrowserRouter([
   {
@@ -21,14 +22,17 @@ export default createBrowserRouter([
         path: "",
         index: true,
         element: <Home />,
+        errorElement: <ErrorMessage />,
       },
       {
         path: "post",
         element: <Post />,
+        errorElement: <ErrorMessage />,
       },
       {
         path: "profile",
         element: <Profile />,
+        errorElement: <ErrorMessage />,
       },
     ],
   },
