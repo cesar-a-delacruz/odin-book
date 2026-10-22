@@ -15,6 +15,7 @@ export default function Image({ src, alt, className }) {
           event.stopPropagation();
         }}
         className={className}
+        fetchPriority="high"
       />
       <Dialog ref={previewDialog}>
         <img src={src} alt={alt} />

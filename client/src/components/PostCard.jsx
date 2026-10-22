@@ -15,7 +15,7 @@ export default function PostCard({ data, clickHandler = () => {} }) {
           event.stopPropagation();
         }}
       >
-        <Avatar src={data.user.image} alt={data.user.name} />
+        <Avatar src={data.user.image} alt={data.user.username} />
         <span className={styles.username}>@{data.user.username}</span>
       </div>
       <p>{data.content}</p>

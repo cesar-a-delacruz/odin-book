@@ -20,7 +20,7 @@ export default function CommentList({ endpoint, sendToPost = true }) {
             navigate("/post", { state: { id: comment.postId } });
           }}
         >
-          <Avatar src={comment.user.image} alt={comment.user.name} />
+          <Avatar src={comment.user.image} alt={comment.user.username} />
           <div className={styles.text}>
             <span
               className={styles.username}

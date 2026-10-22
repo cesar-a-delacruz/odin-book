@@ -17,7 +17,7 @@ export default function UserList({ endpoint, action }) {
           key={user.id}
           onClick={() => navigate("/profile", { state: { id: user.id } })}
         >
-          <Avatar src={user.image} alt={user.name} />
+          <Avatar src={user.image} alt={user.username} />
           <div className={styles.text}>
             <span className={styles.username}>@{user.username}</span>
             <span className={styles.bio}>{user.bio}</span>
