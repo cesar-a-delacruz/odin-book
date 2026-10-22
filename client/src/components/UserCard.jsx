@@ -5,6 +5,7 @@ import { fetchData } from "@/utils/js/fetchData";
 
 export default function UserCard({ endpoint }) {
   const user = use(fetchData(endpoint));
+  if (user.error) throw Error(user.error);
 
   return (
     <div className={styles.container}>

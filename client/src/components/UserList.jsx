@@ -7,6 +7,7 @@ import { use } from "react";
 export default function UserList({ endpoint, action }) {
   const navigate = useNavigate();
   const users = use(fetchData(endpoint));
+  if (users.error) throw Error(users.error);
 
   return (
     <div className={styles.container}>

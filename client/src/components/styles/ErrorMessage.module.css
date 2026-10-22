@@ -1,6 +1,9 @@
 .error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
   padding: var(--padding);
-  width: fit-content;
 
   .icon {
     text-align: center;

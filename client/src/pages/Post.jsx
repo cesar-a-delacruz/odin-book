@@ -8,6 +8,8 @@ import TextForm from "@/components/TextForm";
 import { useLocation } from "react-router-dom";
 import Loader from "@/components/Loader";
 import { fetchData } from "@/utils/js/fetchData";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorMessage from "@/components/ErrorMessage";
 
 export default function Post() {
   document.title = `${import.meta.env.VITE_TITLE}: Post`;
@@ -24,12 +26,14 @@ export default function Post() {
       <section className={styles.comments}>
         <h2>Comments</h2>
         <TextForm fields={create[0].fields} initialData={{ postId: post.id }} />
-        <Suspense fallback={<Loader loadingText={"Loading comments..."} />}>
-          <CommentList
-            endpoint={`comment/post/${locationState.id}`}
-            sendToPost={false}
-          />
-        </Suspense>
+        <ErrorBoundary fallbackRender={(props) => <ErrorMessage {...props} />}>
+          <Suspense fallback={<Loader loadingText={"Loading comments..."} />}>
+            <CommentList
+              endpoint={`comment/post/${locationState.id}`}
+              sendToPost={false}
+            />
+          </Suspense>
+        </ErrorBoundary>
       </section>
     </div>
   );

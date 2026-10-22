@@ -6,7 +6,8 @@ import PostCard from "@/components/PostCard";
 import { useNavigate } from "react-router-dom";
 import Loader from "@/components/Loader";
 import { fetchData } from "@/utils/js/fetchData";
-// import { ErrorBoundary } from "react-error-boundary";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorMessage from "@/components/ErrorMessage";
 
 export default function Home() {
   document.title = `${import.meta.env.VITE_TITLE}: Home`;
@@ -20,12 +21,11 @@ export default function Home() {
     <div className={`${styles.homePage} ${pageStyles.default}`}>
       <section className={styles.followed}>
         <h2>Followed users</h2>
-        {/* <ErrorBoundary >
-
-        </ErrorBoundary> */}
-        <Suspense fallback={<Loader loadingText={"Loading users..."} />}>
-          <UserList endpoint={"user"} />
-        </Suspense>
+        <ErrorBoundary fallbackRender={(props) => <ErrorMessage {...props} />}>
+          <Suspense fallback={<Loader loadingText={"Loading users..."} />}>
+            <UserList endpoint={"user"} />
+          </Suspense>
+        </ErrorBoundary>
       </section>
 
       <section className={styles.feed}>
@@ -40,12 +40,14 @@ export default function Home() {
 
       <section className={styles.more}>
         <h2>More users</h2>
-        <Suspense fallback={<Loader loadingText={"Loading users..."} />}>
-          <UserList
-            endpoint={"user"}
-            action={{ text: "Follow", icon: <div>...</div> }}
-          />
-        </Suspense>
+        <ErrorBoundary fallbackRender={(props) => <ErrorMessage {...props} />}>
+          <Suspense fallback={<Loader loadingText={"Loading users..."} />}>
+            <UserList
+              endpoint={"user"}
+              action={{ text: "Follow", icon: <div>...</div> }}
+            />
+          </Suspense>
+        </ErrorBoundary>
       </section>
     </div>
   );

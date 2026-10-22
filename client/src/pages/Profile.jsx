@@ -9,6 +9,8 @@ import UserCard from "@/components/UserCard";
 import TextForm from "@/components/TextForm";
 import Loader from "@/components/Loader";
 import { fetchData } from "@/utils/js/fetchData";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorMessage from "@/components/ErrorMessage";
 
 export default function Profile() {
   document.title = `${import.meta.env.VITE_TITLE}: Profile`;
@@ -22,9 +24,11 @@ export default function Profile() {
   return (
     <div className={`${styles.profilePage} ${pageStyles.default}`}>
       <section className={styles.user}>
-        <Suspense fallback={<Loader loadingText={"Loading user..."} />}>
-          <UserCard endpoint={`user/${locationState.id}`} />
-        </Suspense>
+        <ErrorBoundary fallbackRender={(props) => <ErrorMessage {...props} />}>
+          <Suspense fallback={<Loader loadingText={"Loading user..."} />}>
+            <UserCard endpoint={`user/${locationState.id}`} />
+          </Suspense>
+        </ErrorBoundary>
       </section>
 
       <section className={styles.posts}>
@@ -44,9 +48,11 @@ export default function Profile() {
 
       <section className={styles.comments}>
         <h2>Recent comments</h2>
-        <Suspense fallback={<Loader loadingText={"Loading comments..."} />}>
-          <CommentList endpoint={`comment/user/${locationState.id}`} />
-        </Suspense>
+        <ErrorBoundary fallbackRender={(props) => <ErrorMessage {...props} />}>
+          <Suspense fallback={<Loader loadingText={"Loading comments..."} />}>
+            <CommentList endpoint={`comment/user/${locationState.id}`} />
+          </Suspense>
+        </ErrorBoundary>
       </section>
     </div>
   );

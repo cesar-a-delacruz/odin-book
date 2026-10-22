@@ -7,6 +7,7 @@ import { fetchData } from "@/utils/js/fetchData";
 export default function CommentList({ endpoint, sendToPost = true }) {
   const navigate = useNavigate();
   const comments = use(fetchData(endpoint));
+  if (comments.error) throw Error(comments.error);
 
   return (
     <div className={styles.container}>
