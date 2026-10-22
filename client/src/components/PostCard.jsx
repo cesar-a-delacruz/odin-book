@@ -2,6 +2,7 @@ import styles from "./styles/PostCard.module.css";
 import { useNavigate } from "react-router-dom";
 import Avatar from "./Avatar";
 import Image from "./Image";
+import { MessageSquareTextIcon, ThumbsUpIcon } from "lucide-react";
 
 export default function PostCard({ data, clickHandler = () => {} }) {
   const navigate = useNavigate();
@@ -26,11 +27,11 @@ export default function PostCard({ data, clickHandler = () => {} }) {
       <div className={styles.footer}>
         <div className={styles.stats}>
           <div className={styles.stat}>
-            <div>...</div>
+            <ThumbsUpIcon />
             <span>{data._count.likes}</span>
           </div>
           <div className={styles.stat}>
-            <div>...</div>
+            <MessageSquareTextIcon />
             <span>{data._count.comments}</span>
           </div>
         </div>

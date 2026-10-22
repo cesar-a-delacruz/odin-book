@@ -2,6 +2,7 @@ import styles from "./styles/TextForm.module.css";
 import { useState } from "react";
 import { clean } from "@/utils/js/objects";
 import TextFormField from "./TextFormField";
+import { PlusIcon } from "lucide-react";
 
 export default function TextForm({ fields = [], initialData, actions = [] }) {
   const [data, setData] = useState(initialData);
@@ -18,7 +19,9 @@ export default function TextForm({ fields = [], initialData, actions = [] }) {
         />
       ))}
       <div className={styles.actions}>
-        <button disabled={disableSubmit}>...</button>
+        <button disabled={disableSubmit}>
+          <PlusIcon />
+        </button>
         {actions.map((a) => (
           <button disabled={disableSubmit} key={a.icon}>
             {a.icon}

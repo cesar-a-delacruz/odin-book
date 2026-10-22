@@ -11,6 +11,7 @@ import Loader from "@/components/Loader";
 import { fetchData } from "@/utils/js/fetchData";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorMessage from "@/components/ErrorMessage";
+import { ImagePlusIcon, PlusIcon } from "lucide-react";
 
 export default function Profile() {
   document.title = `${import.meta.env.VITE_TITLE}: Profile`;
@@ -35,7 +36,7 @@ export default function Profile() {
         <TextForm
           fields={create[0].fields}
           initialData={{}}
-          actions={[{ icon: "..." }]}
+          actions={[{ icon: <ImagePlusIcon /> }]}
         />
         {posts.data.map((p) => (
           <PostCard

@@ -13,14 +13,25 @@
       border-right: var(--border);
       background-color: var(--color-background-1);
 
-      h1 {
-        font-size: var(--size-4);
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: var(--gap);
         cursor: pointer;
-        margin: var(--margin) 0;
-        text-align: center;
-        width: max-content;
-      }
 
+        svg {
+          width: var(--svg-size-2);
+          height: var(--svg-size-2);
+        }
+
+        h1 {
+          font-size: var(--size-4);
+          cursor: pointer;
+          margin: var(--margin) 0;
+          text-align: center;
+          width: max-content;
+        }
+      }
       p {
         font-size: var(--font-size-2);
         margin: 0;
@@ -58,8 +69,14 @@
         border: none;
         border-bottom: var(--border);
 
-        h1 {
-          font-size: var(--size-5);
+        .logo {
+          svg {
+            width: var(--svg-size-1);
+            height: var(--svg-size-1);
+          }
+          h1 {
+            font-size: var(--font-size-4);
+          }
         }
 
         p {

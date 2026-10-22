@@ -5,6 +5,13 @@ import { useContext } from "react";
 import Menu from "@/components/Menu";
 import MenuContext from "@/contexts/MenuContext";
 import { ThemeContext } from "@/contexts/ThemeContext";
+import {
+  BookUserIcon,
+  LogOutIcon,
+  SunMoonIcon,
+  UserIcon,
+  UserXIcon,
+} from "lucide-react";
 
 export default function Default() {
   const { changeTheme } = useContext(ThemeContext);
@@ -12,28 +19,39 @@ export default function Default() {
   return (
     <div className={`layout ${styles.default}`}>
       <header>
-        <h1 onClick={() => location.assign("/")}>
-          {import.meta.env.VITE_TITLE}
-        </h1>
+        <div className={styles.logo} onClick={() => location.assign("/")}>
+          <BookUserIcon />
+          <h1>{import.meta.env.VITE_TITLE}</h1>
+        </div>
 
         <MenuContext
           value={{
             options: [
-              { text: "Change theme", handler: changeTheme },
+              {
+                text: "Change theme",
+                handler: changeTheme,
+                icon: <SunMoonIcon />,
+              },
               {
                 text: "View profile",
                 handler: () => {
                   window.history.replaceState({}, "");
                   location.assign("/profile");
                 },
+                icon: <UserIcon />,
               },
               {
                 text: "Logout",
                 handler: () => {
                   location.replace("/login");
                 },
+                icon: <LogOutIcon />,
               },
-              { text: "Delete account", handler: () => {} },
+              {
+                text: "Delete account",
+                handler: () => {},
+                icon: <UserXIcon />,
+              },
             ],
             render: true,
           }}

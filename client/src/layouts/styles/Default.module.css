@@ -17,9 +17,20 @@
     padding: 0 var(--padding-1);
     border-bottom: var(--border);
 
-    h1 {
-      font-size: var(--font-size-4);
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: var(--gap);
       cursor: pointer;
+
+      svg {
+        width: var(--svg-size-1);
+        height: var(--svg-size-1);
+      }
+
+      h1 {
+        font-size: var(--font-size-4);
+      }
     }
   }
 

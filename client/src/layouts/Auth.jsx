@@ -1,15 +1,17 @@
 import "@/utils/css/layouts.css";
 import styles from "./styles/Auth.module.css";
 import { Outlet } from "react-router-dom";
+import { BookUserIcon } from "lucide-react";
 
 export default function Auth() {
   return (
     <div className={`layout ${styles.auth}`}>
       <div className={styles.content}>
         <aside>
-          <h1 onClick={() => location.assign("/")}>
-            {import.meta.env.VITE_TITLE}
-          </h1>
+          <div className={styles.logo} onClick={() => location.assign("/")}>
+            <BookUserIcon />
+            <h1>{import.meta.env.VITE_TITLE}</h1>
+          </div>
           <p>
             {location.pathname.includes("register") ? (
               <>

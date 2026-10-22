@@ -8,6 +8,7 @@ import Loader from "@/components/Loader";
 import { fetchData } from "@/utils/js/fetchData";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorMessage from "@/components/ErrorMessage";
+import { PlusIcon } from "lucide-react";
 
 export default function Home() {
   document.title = `${import.meta.env.VITE_TITLE}: Home`;
@@ -44,7 +45,7 @@ export default function Home() {
           <Suspense fallback={<Loader loadingText={"Loading users..."} />}>
             <UserList
               endpoint={"user"}
-              action={{ text: "Follow", icon: <div>...</div> }}
+              action={{ text: "Follow", icon: <PlusIcon /> }}
             />
           </Suspense>
         </ErrorBoundary>

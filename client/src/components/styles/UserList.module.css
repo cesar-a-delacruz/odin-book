@@ -43,13 +43,21 @@
       display: flex;
       gap: var(--gap);
       font-size: var(--font-size-1);
+      align-items: center;
+
+      &:hover {
+        * {
+          color: var(--color-text-2);
+        }
+      }
 
       * {
         color: var(--color-text-1);
+      }
 
-        &:hover {
-          color: var(--color-text-2);
-        }
+      svg {
+        width: var(--svg-size-1);
+        height: var(--svg-size-1);
       }
     }
   }

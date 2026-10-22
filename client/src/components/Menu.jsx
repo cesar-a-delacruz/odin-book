@@ -2,6 +2,7 @@ import styles from "./styles/Menu.module.css";
 import { useContext, useRef } from "react";
 import MenuContext from "@/contexts/MenuContext";
 import { CurrentMenuContext } from "@/contexts/CurrentMenuContext";
+import { MenuIcon } from "lucide-react";
 
 export default function Menu({ selectionHandler }) {
   const { options, render } = useContext(MenuContext);
@@ -44,7 +45,7 @@ export default function Menu({ selectionHandler }) {
           event.stopPropagation();
         }}
       >
-        ...
+        <MenuIcon />
       </div>
     </div>
   );
