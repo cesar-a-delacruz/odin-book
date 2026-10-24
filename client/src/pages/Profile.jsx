@@ -11,7 +11,7 @@ import Loader from "@/components/Loader";
 import { fetchData } from "@/utils/js/fetchData";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorMessage from "@/components/ErrorMessage";
-import { ImagePlusIcon, PlusIcon } from "lucide-react";
+import { ImagePlusIcon } from "lucide-react";
 
 export default function Profile() {
   document.title = `${import.meta.env.VITE_TITLE}: Profile`;
