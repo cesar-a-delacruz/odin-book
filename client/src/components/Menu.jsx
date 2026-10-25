@@ -38,8 +38,10 @@ export default function Menu({ selectionHandler }) {
 
           if (current && current !== menuRef.current)
             current.style.display = "none";
+
           menuRef.current.style.display =
             menuRef.current.style.display === "block" ? "none" : "block";
+
           setCurrent(menuRef.current);
 
           event.stopPropagation();

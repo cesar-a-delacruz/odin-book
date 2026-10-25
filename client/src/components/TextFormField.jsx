@@ -8,6 +8,7 @@ export default function TextFormField({ field, value, changeHandler }) {
           className={styles.text}
           id={field.id}
           placeholder={field.placeholder || ""}
+          value={value}
           onChange={(e) =>
             changeHandler(e.currentTarget.id, e.currentTarget.value)
           }
