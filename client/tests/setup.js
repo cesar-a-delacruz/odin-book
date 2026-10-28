@@ -9,6 +9,9 @@ beforeEach(() => {
     matches: true,
     media: query,
   }));
+  document.documentElement.scroll = vi
+    .fn()
+    .mockImplementation(({ top, behavior }) => {});
 });
 
 afterEach(() => {

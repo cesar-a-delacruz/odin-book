@@ -5,6 +5,7 @@ import UserCard from "@/components/UserCard";
 import { act } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorMessage from "@/components/ErrorMessage";
+import requestHandler from "@/handlers/requestHandler";
 
 vi.mock("react-router-dom", async () => {
   const actual = await vi.importActual("react-router-dom");
@@ -14,8 +15,9 @@ vi.mock("react-router-dom", async () => {
   };
 });
 
+const userProfile = (await requestHandler.get("user")).data[0];
 const path = "user/";
-const userId = "01a157a8-4ac1-76da-b758-e2e64ae36e81";
+const userId = userProfile.id;
 
 describe("UserCard", () => {
   test("loads user", async () => {

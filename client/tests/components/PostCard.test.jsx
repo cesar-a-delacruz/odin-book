@@ -12,8 +12,10 @@ vi.mock("react-router-dom", async () => {
   };
 });
 
+const userProfile = (await requestHandler.get("user")).data[0];
+const post = (await requestHandler.get(`post/user/${userProfile.id}`)).data[3];
 const path = "post";
-const postId = "01a157a8-4ae2-75ab-ae36-40b71085113d";
+const postId = post.id;
 
 describe("PostCard", () => {
   test("loads correctly", async () => {

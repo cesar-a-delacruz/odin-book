@@ -5,6 +5,7 @@ import CommentList from "@/components/CommentList";
 import { act } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorMessage from "@/components/ErrorMessage";
+import requestHandler from "@/handlers/requestHandler";
 
 vi.mock("react-router-dom", async () => {
   const actual = await vi.importActual("react-router-dom");
@@ -15,7 +16,9 @@ vi.mock("react-router-dom", async () => {
   };
 });
 
-const postId = "01a157a8-4ae2-75ab-ae36-40b71085113d";
+const userProfile = (await requestHandler.get("user")).data[0];
+const post = (await requestHandler.get(`post/user/${userProfile.id}`)).data[3];
+const postId = post.id;
 const path = "comment/post/";
 
 describe("CommentList", () => {
@@ -25,7 +28,7 @@ describe("CommentList", () => {
     });
 
     await waitFor(() => {
-      const comments = document.querySelector("body > div > div");
+      const comments = document.querySelector("body > div > div > div");
       expect(comments.children.length).toBe(2);
     });
   });

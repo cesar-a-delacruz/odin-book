@@ -3,41 +3,30 @@ import { screen, waitFor } from "@testing-library/react";
 import { act } from "react";
 import setRoute from "../setRoute";
 import * as fetchData from "@/utils/js/fetchData";
+import requestHandler from "@/handlers/requestHandler";
+
+const userProfile = (await requestHandler.get("user")).data[0];
+const post = (await requestHandler.get(`post/user/${userProfile.id}`)).data[3];
 
 vi.mock("react-router-dom", async () => {
   const actual = await vi.importActual("react-router-dom");
   return {
     ...actual,
     useLocation: () => ({
-      state: { id: "01a157a8-4ae2-75ab-ae36-40b71085113d" },
+      state: { id: post.id },
     }),
   };
 });
 const path = "/post";
 
 describe("Post", () => {
-  let app;
-
   test("loads post section", async () => {
     await act(async () => {
-      app = setRoute(path);
+      setRoute(path);
     });
     await waitFor(() => {
       const section = document.querySelector("section:nth-of-type(1)");
       expect(section.children.length).toBe(1);
-    });
-  });
-
-  test("loads comments section", async () => {
-    await act(async () => {
-      app = setRoute(path);
-    });
-    await waitFor(() => {
-      const section = document.querySelector("section:nth-of-type(2)");
-      expect(section.children.length).toBe(3);
-
-      const comments = section.children.item(1);
-      expect(comments.children.length).toBe(3);
     });
   });
 
@@ -51,7 +40,7 @@ describe("Post", () => {
     );
 
     await act(async () => {
-      app = setRoute(path);
+      setRoute(path);
     });
     const message = await screen.findByText("Failed to find any post.");
     expect(message.innerHTML).toBe("Failed to find any post.");

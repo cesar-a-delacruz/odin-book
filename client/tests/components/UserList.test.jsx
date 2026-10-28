@@ -14,15 +14,16 @@ vi.mock("react-router-dom", async () => {
     useRouteError: () => {},
   };
 });
+const path = "user";
 
 describe("UserList", () => {
   test("loads users", async () => {
     await act(async () => {
-      render(<UserList endpoint={"user"} />);
+      render(<UserList endpoint={path} />);
     });
 
     await waitFor(() => {
-      const users = document.querySelector("body > div > div");
+      const users = document.querySelector("body > div > div > div");
       expect(users.children.length).toBe(4);
     });
   });
@@ -31,7 +32,7 @@ describe("UserList", () => {
     await act(async () => {
       render(
         <UserList
-          endpoint={"user"}
+          endpoint={path}
           action={{ text: "Follow", icon: "...", handler: () => {} }}
         />,
       );
