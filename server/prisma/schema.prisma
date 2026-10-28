@@ -23,7 +23,7 @@ model User {
   comments  Comment[]
   likes     Like[]
   followers Follower[] @relation(name: "follower_follower_id_fkey")
-  users     Follower[] @relation(name: "follower_user_id_fkey")
+  followed  Follower[] @relation(name: "follower_followed_id_fkey")
 
   @@index([id])
   @@map("user")
@@ -72,9 +72,9 @@ model Like {
 model Follower {
   followerId String @map("follower_id")
   follower   User   @relation(fields: [followerId], references: [id], onDelete: Cascade, name: "follower_follower_id_fkey")
-  userId     String @map("user_id")
-  user       User   @relation(fields: [userId], references: [id], onDelete: Cascade, name: "follower_user_id_fkey")
+  followedId String @map("followed_id")
+  followed   User   @relation(fields: [followedId], references: [id], onDelete: Cascade, name: "follower_followed_id_fkey")
 
-  @@id([followerId, userId])
+  @@id([followerId, followedId])
   @@map("follower")
 }

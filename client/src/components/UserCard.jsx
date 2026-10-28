@@ -21,11 +21,11 @@ export default function UserCard({ endpoint }) {
       </div>
       <div className={styles.stats}>
         <div className={styles.stat}>
-          <span className={styles.number}>{user.data._count.followers}</span>
+          <span className={styles.number}>{user.data._count.followed}</span>
           <span className={styles.text}>followers</span>
         </div>
         <div className={styles.stat}>
-          <span className={styles.number}>{user.data._count.users}</span>
+          <span className={styles.number}>{user.data._count.followers}</span>
           <span className={styles.text}>following</span>
         </div>
         <div className={styles.stat}>

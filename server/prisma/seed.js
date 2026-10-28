@@ -8,19 +8,19 @@ const dbFaker = require("../faker/dbFaker.js");
   const followers = [
     {
       followerId: users[3].id,
-      userId: users[0].id,
+      followedId: users[0].id,
     },
     {
       followerId: users[2].id,
-      userId: users[0].id,
+      followedId: users[0].id,
     },
     {
       followerId: users[1].id,
-      userId: users[1].id,
+      followedId: users[1].id,
     },
     {
       followerId: users[0].id,
-      userId: users[2].id,
+      followedId: users[2].id,
     },
   ];
   await dbConfig.follower.createMany({ data: followers });
