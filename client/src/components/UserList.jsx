@@ -2,12 +2,14 @@ import styles from "./styles/UserList.module.css";
 import { useNavigate } from "react-router-dom";
 import Avatar from "./Avatar";
 import { fetchData } from "@/utils/js/fetchData";
-import { use } from "react";
+import { use, useState } from "react";
+import requestHandler from "@/handlers/requestHandler";
 
 export default function UserList({ endpoint, action }) {
   const navigate = useNavigate();
-  const users = use(fetchData(endpoint));
-  if (users.error) throw Error(users.error);
+  const initialUsers = use(fetchData(endpoint));
+  if (initialUsers.error) throw Error(initialUsers.error);
+  const [users, setUsers] = useState(initialUsers);
 
   return (
     <div className={styles.container}>
@@ -36,6 +38,22 @@ export default function UserList({ endpoint, action }) {
           )}
         </div>
       ))}
+      <button
+        onClick={async () => {
+          const more = await requestHandler.get(
+            `${endpoint}?q=${users.data[users.data.length - 1].id}`,
+          );
+          if (more.error) return alert(more.error);
+
+          setUsers((prev) => {
+            const newUsers = structuredClone(prev);
+            newUsers.data = [...newUsers.data, ...more.data];
+            return newUsers;
+          });
+        }}
+      >
+        fetch more
+      </button>
     </div>
   );
 }

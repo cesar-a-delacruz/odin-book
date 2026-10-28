@@ -1,6 +1,6 @@
 import "@/utils/css/layouts.css";
 import styles from "./styles/Default.module.css";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import Menu from "@/components/Menu";
 import MenuContext from "@/contexts/MenuContext";
@@ -15,11 +15,12 @@ import {
 
 export default function Default() {
   const { changeTheme } = useContext(ThemeContext);
+  const navigate = useNavigate();
 
   return (
     <div className={`layout ${styles.default}`}>
       <header>
-        <div className={styles.logo} onClick={() => location.assign("/")}>
+        <div className={styles.logo} onClick={() => navigate("/")}>
           <BookUserIcon />
           <h1>{import.meta.env.VITE_TITLE}</h1>
         </div>
@@ -36,7 +37,7 @@ export default function Default() {
                 text: "View profile",
                 handler: () => {
                   window.history.replaceState({}, "");
-                  location.assign("/profile");
+                  navigate("/profile", { state: { id: "profile" } });
                 },
                 icon: <UserIcon />,
               },

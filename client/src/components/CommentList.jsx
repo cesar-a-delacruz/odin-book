@@ -1,13 +1,15 @@
 import styles from "./styles/CommentList.module.css";
 import { useNavigate } from "react-router-dom";
-import { use } from "react";
+import { use, useState } from "react";
 import Avatar from "./Avatar";
 import { fetchData } from "@/utils/js/fetchData";
+import requestHandler from "@/handlers/requestHandler";
 
 export default function CommentList({ endpoint, sendToPost = true }) {
   const navigate = useNavigate();
-  const comments = use(fetchData(endpoint));
-  if (comments.error) throw Error(comments.error);
+  const initialComments = use(fetchData(endpoint));
+  if (initialComments.error) throw Error(initialComments.error);
+  const [comments, setComments] = useState(initialComments);
 
   return (
     <div className={styles.container}>
@@ -38,6 +40,22 @@ export default function CommentList({ endpoint, sendToPost = true }) {
           </div>
         </div>
       ))}
+      <button
+        onClick={async () => {
+          const more = await requestHandler.get(
+            `${endpoint}?q=${comments.data[comments.data.length - 1].id}`,
+          );
+          if (more.error) return alert(more.error);
+
+          setComments((prev) => {
+            const newComments = structuredClone(prev);
+            newComments.data = [...newComments.data, ...more.data];
+            return newComments;
+          });
+        }}
+      >
+        fetch more
+      </button>
     </div>
   );
 }

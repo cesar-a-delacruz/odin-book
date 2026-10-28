@@ -29,6 +29,11 @@ const dbFaker = require("../faker/dbFaker.js");
   db.posts[1].userId = users[0].id;
   db.posts[2].userId = users[1].id;
   db.posts[3].userId = users[2].id;
+  db.posts[4].userId = users[0].id;
+  db.posts[5].userId = users[0].id;
+  db.posts[6].userId = users[1].id;
+  db.posts[7].userId = users[2].id;
+  db.posts[8].userId = users[2].id;
 
   const posts = await dbConfig.post.createManyAndReturn({ data: db.posts });
   const likes = [

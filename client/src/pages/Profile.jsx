@@ -38,13 +38,17 @@ export default function Profile() {
           initialData={{}}
           actions={[{ icon: <ImagePlusIcon /> }]}
         />
-        {posts.data.map((p) => (
-          <PostCard
-            data={p}
-            key={p.id}
-            clickHandler={() => navigate("/post", { state: { id: p.id } })}
-          />
-        ))}
+        {posts.data.length ? (
+          posts.data.map((p) => (
+            <PostCard
+              data={p}
+              key={p.id}
+              clickHandler={() => navigate("/post", { state: { id: p.id } })}
+            />
+          ))
+        ) : (
+          <Loader loadingText={`No post have been found.`} />
+        )}
       </section>
 
       <section className={styles.comments}>

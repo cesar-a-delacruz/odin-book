@@ -1,8 +1,19 @@
 const Repository = require("./Repository");
 
 module.exports = class PostRepository extends Repository {
-  findAll = async () => {
+  findAll = async (cursor) => {
+    let paginationProps = { take: parseInt(process.env.PAGE_SIZE) };
+    if (cursor)
+      paginationProps = {
+        ...paginationProps,
+        cursor: {
+          id: cursor,
+        },
+        skip: 1,
+      };
+
     return await this.entity.model.findMany({
+      ...paginationProps,
       include: {
         user: {
           select: {
@@ -19,7 +30,7 @@ module.exports = class PostRepository extends Repository {
         },
       },
       orderBy: {
-        createdAt: "desc",
+        id: "desc",
       },
       omit: { userId: true },
     });
@@ -45,8 +56,19 @@ module.exports = class PostRepository extends Repository {
       omit: { userId: true },
     });
   };
-  findAllByUser = async (userId) => {
+  findAllByUser = async (userId, cursor) => {
+    let paginationProps = { take: parseInt(process.env.PAGE_SIZE) };
+    if (cursor)
+      paginationProps = {
+        ...paginationProps,
+        cursor: {
+          id: cursor,
+        },
+        skip: 1,
+      };
+
     return await this.entity.model.findMany({
+      ...paginationProps,
       where: { userId },
       include: {
         user: {
@@ -64,7 +86,7 @@ module.exports = class PostRepository extends Repository {
         },
       },
       orderBy: {
-        createdAt: "desc",
+        id: "desc",
       },
       omit: { userId: true },
     });

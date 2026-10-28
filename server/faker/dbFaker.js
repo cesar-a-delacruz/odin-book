@@ -11,7 +11,7 @@ module.exports = async function () {
   );
   users[1].bio = null;
 
-  const posts = faker.helpers.multiple(dataFakers.postFaker, { count: 4 });
+  const posts = faker.helpers.multiple(dataFakers.postFaker, { count: 9 });
   posts[1].image = null;
 
   const comments = faker.helpers.multiple(dataFakers.commentFaker, {

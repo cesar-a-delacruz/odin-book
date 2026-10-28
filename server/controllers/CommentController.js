@@ -3,7 +3,9 @@ const CRUDController = require("./CRUDController.js");
 module.exports = class CommentController extends CRUDController {
   findAllByUser = async (req, res) => {
     try {
-      const rows = await this.repository.findAllByUser(req.params.userId);
+      const id =
+        req.params.userId === "profile" ? req.user.id : req.params.userId;
+      const rows = await this.repository.findAllByUser(id, req.query.q);
 
       if (!rows.length)
         return res
@@ -23,7 +25,10 @@ module.exports = class CommentController extends CRUDController {
   };
   findAllByPost = async (req, res) => {
     try {
-      const rows = await this.repository.findAllByPost(req.params.postId);
+      const rows = await this.repository.findAllByPost(
+        req.params.postId,
+        req.query.q,
+      );
 
       if (!rows.length)
         return res
