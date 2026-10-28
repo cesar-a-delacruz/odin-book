@@ -35,28 +35,7 @@ module.exports = class PostRepository extends Repository {
       omit: { userId: true },
     });
   };
-  findOne = async (id) => {
-    return await this.entity.model.findUnique({
-      where: { id },
-      include: {
-        user: {
-          select: {
-            id: true,
-            username: true,
-            image: true,
-          },
-        },
-        _count: {
-          select: {
-            likes: true,
-            comments: true,
-          },
-        },
-      },
-      omit: { userId: true },
-    });
-  };
-  findAllByUser = async (userId, cursor) => {
+  findAllByUser = async (username, cursor) => {
     let paginationProps = { take: parseInt(process.env.PAGE_SIZE) };
     if (cursor)
       paginationProps = {
@@ -69,7 +48,7 @@ module.exports = class PostRepository extends Repository {
 
     return await this.entity.model.findMany({
       ...paginationProps,
-      where: { userId },
+      where: { user: { username: username } },
       include: {
         user: {
           select: {
@@ -87,6 +66,27 @@ module.exports = class PostRepository extends Repository {
       },
       orderBy: {
         id: "desc",
+      },
+      omit: { userId: true },
+    });
+  };
+  findOne = async (id) => {
+    return await this.entity.model.findUnique({
+      where: { id },
+      include: {
+        user: {
+          select: {
+            id: true,
+            username: true,
+            image: true,
+          },
+        },
+        _count: {
+          select: {
+            likes: true,
+            comments: true,
+          },
+        },
       },
       omit: { userId: true },
     });

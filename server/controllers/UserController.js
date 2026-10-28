@@ -24,8 +24,8 @@ module.exports = class UserController extends CRUDController {
 
   findOne = async (req, res) => {
     try {
-      const id = req.params.id === "profile" ? req.user.id : req.params.id;
-      const row = await this.repository.findOne(id);
+      const username = req.params.username || req.user.username;
+      const row = await this.repository.findOne(username);
 
       if (!row)
         return res

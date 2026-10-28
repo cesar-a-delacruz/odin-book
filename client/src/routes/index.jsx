@@ -30,7 +30,7 @@ export default createBrowserRouter([
         errorElement: <ErrorMessage />,
       },
       {
-        path: "profile",
+        path: "profile/:username?",
         element: <Profile />,
         errorElement: <ErrorMessage />,
       },

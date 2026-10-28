@@ -1,7 +1,7 @@
 import pageStyles from "@/utils/css/modules/defaultPage.module.css";
 import styles from "./styles/Profile.module.css";
 import { Suspense, use, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { create } from "@/fieldsets/postFieldsets";
 import PostCard from "@/components/PostCard";
 import CommentList from "@/components/CommentList";
@@ -17,9 +17,9 @@ import requestHandler from "@/handlers/requestHandler";
 export default function Profile() {
   document.title = `${import.meta.env.VITE_TITLE}: Profile`;
   const navigate = useNavigate();
-  const locationState = useLocation().state;
-
-  const initialPosts = use(fetchData(`post/user/${locationState.id}`));
+  const { username } = useParams();
+  const pathEnd = username ? `/${username}` : "";
+  const initialPosts = use(fetchData(`post/user${pathEnd}`));
   if (initialPosts.error) throw Error(initialPosts.error);
   const [posts, setPosts] = useState(initialPosts);
 
@@ -31,7 +31,7 @@ export default function Profile() {
       document.documentElement.scrollTop;
     if (document.documentElement.scrollHeight === parseInt(scrollPostion)) {
       const more = await requestHandler.get(
-        `post/user/${locationState.id}?q=${posts.data[posts.data.length - 1].id}`,
+        `post/user${pathEnd}?q=${posts.data[posts.data.length - 1].id}`,
       );
       if (more.error) return alert(more.error);
 
@@ -48,7 +48,7 @@ export default function Profile() {
       <section className={styles.user}>
         <ErrorBoundary fallbackRender={(props) => <ErrorMessage {...props} />}>
           <Suspense fallback={<Loader loadingText={"Loading user..."} />}>
-            <UserCard endpoint={`user/${locationState.id}`} />
+            <UserCard endpoint={`user${pathEnd}`} />
           </Suspense>
         </ErrorBoundary>
       </section>
@@ -76,7 +76,7 @@ export default function Profile() {
         <h2>Recent comments</h2>
         <ErrorBoundary fallbackRender={(props) => <ErrorMessage {...props} />}>
           <Suspense fallback={<Loader loadingText={"Loading comments..."} />}>
-            <CommentList endpoint={`comment/user/${locationState.id}`} />
+            <CommentList endpoint={`comment/user${pathEnd}`} />
           </Suspense>
         </ErrorBoundary>
       </section>

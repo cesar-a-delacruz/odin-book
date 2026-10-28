@@ -12,7 +12,7 @@ export default function PostCard({ data, clickHandler = () => {} }) {
       <div
         className={styles.user}
         onClick={(event) => {
-          navigate("/profile", { state: { id: data.user.id } });
+          navigate(`/profile/${data.user.username}`);
           event.stopPropagation();
         }}
       >

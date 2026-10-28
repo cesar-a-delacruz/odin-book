@@ -42,7 +42,7 @@ export default function Default() {
                 text: "View profile",
                 handler: () => {
                   window.history.replaceState({}, "");
-                  navigate("/profile", { state: { id: "profile" } });
+                  navigate("/profile");
                 },
                 icon: <UserIcon />,
               },

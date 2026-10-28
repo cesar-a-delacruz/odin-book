@@ -23,9 +23,8 @@ module.exports = class PostController extends CRUDController {
   };
   findAllByUser = async (req, res) => {
     try {
-      const userId =
-        req.params.userId === "profile" ? req.user.id : req.params.userId;
-      const rows = await this.repository.findAllByUser(userId, req.query.q);
+      const username = req.params.username || req.user.username;
+      const rows = await this.repository.findAllByUser(username, req.query.q);
 
       console.table(rows);
       return res.status(200).json({ data: rows }).end();

@@ -1,7 +1,7 @@
 const Repository = require("./Repository");
 
 module.exports = class CommentRepository extends Repository {
-  findAllByUser = async (userId, cursor) => {
+  findAllByUser = async (username, cursor) => {
     let paginationProps = { take: parseInt(process.env.PAGE_SIZE) };
     if (cursor)
       paginationProps = {
@@ -15,7 +15,7 @@ module.exports = class CommentRepository extends Repository {
     return await this.entity.model.findMany({
       ...paginationProps,
       where: {
-        userId,
+        user: { username: username },
       },
       include: {
         user: {

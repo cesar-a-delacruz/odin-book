@@ -13,10 +13,10 @@ module.exports = class UserRepository extends Repository {
       };
     return await this.entity.model.findMany({ ...paginationProps });
   };
-  findOne = async (id) => {
+  findOne = async (username) => {
     return await this.entity.model.findUnique({
       where: {
-        id,
+        username: username,
       },
       include: {
         _count: {

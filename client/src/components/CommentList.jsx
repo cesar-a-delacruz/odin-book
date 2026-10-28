@@ -29,7 +29,7 @@ export default function CommentList({ endpoint, sendToPost = true }) {
               <span
                 className={styles.username}
                 onClick={(event) => {
-                  navigate("/profile", { state: { id: comment.user.id } });
+                  navigate(`/profile/${comment.user.username}`);
                   event.stopPropagation();
                 }}
               >
