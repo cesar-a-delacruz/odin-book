@@ -1,7 +1,7 @@
 import "@/utils/css/layouts.css";
 import styles from "./styles/Default.module.css";
-import { Outlet, useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
 import Menu from "@/components/Menu";
 import MenuContext from "@/contexts/MenuContext";
 import { ThemeContext } from "@/contexts/ThemeContext";
@@ -16,6 +16,11 @@ import {
 export default function Default() {
   const { changeTheme } = useContext(ThemeContext);
   const navigate = useNavigate();
+  const pageLocation = useLocation();
+
+  useEffect(() => {
+    document.documentElement.scroll({ top: 0, behavior: "smooth" });
+  }, [pageLocation.pathname]);
 
   return (
     <div className={`layout ${styles.default}`}>

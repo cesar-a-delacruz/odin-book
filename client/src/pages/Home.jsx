@@ -19,6 +19,26 @@ export default function Home() {
   if (initialPosts.error) throw Error(initialPosts.error);
   const [posts, setPosts] = useState(initialPosts);
 
+  document.onscroll = async () => {
+    if (document.documentElement.scrollTop === 0) return;
+
+    const scrollPostion =
+      document.documentElement.clientHeight +
+      document.documentElement.scrollTop;
+    if (document.documentElement.scrollHeight === parseInt(scrollPostion)) {
+      const more = await requestHandler.get(
+        `post?q=${posts.data[posts.data.length - 1].id}`,
+      );
+      if (more.error) return alert(more.error);
+
+      setPosts((prev) => {
+        const newPosts = structuredClone(prev);
+        newPosts.data = [...newPosts.data, ...more.data];
+        return newPosts;
+      });
+    }
+  };
+
   return (
     <div className={`${styles.homePage} ${pageStyles.default}`}>
       <section className={styles.followed}>
@@ -42,22 +62,6 @@ export default function Home() {
         ) : (
           <Loader loadingText={`No post have been found.`} />
         )}
-        <button
-          onClick={async () => {
-            const more = await requestHandler.get(
-              `post?q=${posts.data[posts.data.length - 1].id}`,
-            );
-            if (more.error) return alert(more.error);
-
-            setPosts((prev) => {
-              const newPosts = structuredClone(prev);
-              newPosts.data = [...newPosts.data, ...more.data];
-              return newPosts;
-            });
-          }}
-        >
-          fetch more
-        </button>
       </section>
 
       <section className={styles.more}>

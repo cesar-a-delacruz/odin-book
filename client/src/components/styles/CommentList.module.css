@@ -7,34 +7,54 @@
   padding: var(--padding);
   width: fit-content;
 
-  .comment {
+  .items {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: var(--gap-1);
-    font-size: var(--font-size-1);
-    padding: var(--padding);
-    border-radius: var(--border-radius-1);
+    padding-bottom: var(--padding);
+    border-bottom: var(--border);
 
-    &:active {
-      background-color: var(--color-background-3);
-    }
-
-    .text {
+    .comment {
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      gap: var(--gap-1);
+      font-size: var(--font-size-1);
+      padding: var(--padding);
+      border-radius: var(--border-radius-1);
 
-      .username {
-        font-weight: bold;
-        cursor: pointer;
+      &:active {
+        background-color: var(--color-background-3);
       }
 
-      .content {
-        overflow-wrap: break-word;
-      }
+      .text {
+        display: flex;
+        flex-direction: column;
 
-      .date {
-        color: var(--color-text-2);
+        .username {
+          font-weight: bold;
+          cursor: pointer;
+        }
+
+        .content {
+          overflow-wrap: break-word;
+        }
+
+        .date {
+          color: var(--color-text-2);
+        }
       }
+    }
+  }
+
+  .loader {
+    text-align: center;
+    color: var(--color-text-2);
+    margin: 0;
+    margin-bottom: var(--margin);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--color-text);
     }
   }
 }

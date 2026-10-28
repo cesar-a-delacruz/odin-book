@@ -13,34 +13,37 @@ export default function CommentList({ endpoint, sendToPost = true }) {
 
   return (
     <div className={styles.container}>
-      {comments.data.map((comment) => (
-        <div
-          className={styles.comment}
-          key={comment.id}
-          onClick={() => {
-            if (!sendToPost) return;
-            navigate("/post", { state: { id: comment.postId } });
-          }}
-        >
-          <Avatar src={comment.user.image} alt={comment.user.username} />
-          <div className={styles.text}>
-            <span
-              className={styles.username}
-              onClick={(event) => {
-                navigate("/profile", { state: { id: comment.user.id } });
-                event.stopPropagation();
-              }}
-            >
-              @{comment.user.username}
-            </span>
-            <p className={styles.content}>{comment.content}</p>
-            <span className={styles.date}>
-              {new Date(comment.createdAt).toLocaleString()}
-            </span>
+      <div className={styles.items}>
+        {comments.data.map((comment) => (
+          <div
+            className={styles.comment}
+            key={comment.id}
+            onClick={() => {
+              if (!sendToPost) return;
+              navigate("/post", { state: { id: comment.postId } });
+            }}
+          >
+            <Avatar src={comment.user.image} alt={comment.user.username} />
+            <div className={styles.text}>
+              <span
+                className={styles.username}
+                onClick={(event) => {
+                  navigate("/profile", { state: { id: comment.user.id } });
+                  event.stopPropagation();
+                }}
+              >
+                @{comment.user.username}
+              </span>
+              <p className={styles.content}>{comment.content}</p>
+              <span className={styles.date}>
+                {new Date(comment.createdAt).toLocaleString()}
+              </span>
+            </div>
           </div>
-        </div>
-      ))}
-      <button
+        ))}
+      </div>
+      <p
+        className={styles.loader}
         onClick={async () => {
           const more = await requestHandler.get(
             `${endpoint}?q=${comments.data[comments.data.length - 1].id}`,
@@ -54,8 +57,8 @@ export default function CommentList({ endpoint, sendToPost = true }) {
           });
         }}
       >
-        fetch more
-      </button>
+        Load more
+      </p>
     </div>
   );
 }

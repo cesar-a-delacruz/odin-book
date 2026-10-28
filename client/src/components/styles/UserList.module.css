@@ -9,56 +9,76 @@
   width: 66%;
   max-width: 66%;
 
-  .user {
+  .items {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: var(--gap-1);
-    font-size: var(--font-size-1);
-    padding: var(--padding);
-    border-radius: var(--border-radius-1);
-    cursor: pointer;
+    padding-bottom: var(--padding);
+    border-bottom: var(--border);
 
-    &:active {
-      background-color: var(--color-background-3);
-    }
-
-    .text {
-      flex-grow: 1;
+    .user {
       display: flex;
-      flex-direction: column;
-      gap: var(--gap);
-
-      .username {
-        font-weight: bold;
-      }
-
-      .bio {
-        overflow: hidden;
-        max-height: var(--font-size-1);
-        overflow-wrap: break-word;
-      }
-    }
-
-    .action {
-      display: flex;
-      gap: var(--gap);
-      font-size: var(--font-size-1);
       align-items: center;
+      gap: var(--gap-1);
+      font-size: var(--font-size-1);
+      padding: var(--padding);
+      border-radius: var(--border-radius-1);
+      cursor: pointer;
 
-      &:hover {
-        * {
-          color: var(--color-text-2);
+      &:active {
+        background-color: var(--color-background-3);
+      }
+
+      .text {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: var(--gap);
+
+        .username {
+          font-weight: bold;
+        }
+
+        .bio {
+          overflow: hidden;
+          max-height: var(--font-size-1);
+          overflow-wrap: break-word;
         }
       }
 
-      * {
-        color: var(--color-text-1);
-      }
+      .action {
+        display: flex;
+        gap: var(--gap);
+        font-size: var(--font-size-1);
+        align-items: center;
 
-      svg {
-        width: var(--svg-size-1);
-        height: var(--svg-size-1);
+        &:hover {
+          * {
+            color: var(--color-text-2);
+          }
+        }
+
+        * {
+          color: var(--color-text-1);
+        }
+
+        svg {
+          width: var(--svg-size-1);
+          height: var(--svg-size-1);
+        }
       }
+    }
+  }
+
+  .loader {
+    text-align: center;
+    color: var(--color-text-2);
+    margin: 0;
+    margin-bottom: var(--margin);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--color-text);
     }
   }
 }

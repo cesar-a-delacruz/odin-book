@@ -12,6 +12,7 @@ import { fetchData } from "@/utils/js/fetchData";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorMessage from "@/components/ErrorMessage";
 import { ImagePlusIcon } from "lucide-react";
+import requestHandler from "@/handlers/requestHandler";
 
 export default function Profile() {
   document.title = `${import.meta.env.VITE_TITLE}: Profile`;
@@ -21,6 +22,26 @@ export default function Profile() {
   const initialPosts = use(fetchData(`post/user/${locationState.id}`));
   if (initialPosts.error) throw Error(initialPosts.error);
   const [posts, setPosts] = useState(initialPosts);
+
+  document.onscroll = async () => {
+    if (document.documentElement.scrollTop === 0) return;
+
+    const scrollPostion =
+      document.documentElement.clientHeight +
+      document.documentElement.scrollTop;
+    if (document.documentElement.scrollHeight === parseInt(scrollPostion)) {
+      const more = await requestHandler.get(
+        `post/user/${locationState.id}?q=${posts.data[posts.data.length - 1].id}`,
+      );
+      if (more.error) return alert(more.error);
+
+      setPosts((prev) => {
+        const newPosts = structuredClone(prev);
+        newPosts.data = [...newPosts.data, ...more.data];
+        return newPosts;
+      });
+    }
+  };
 
   return (
     <div className={`${styles.profilePage} ${pageStyles.default}`}>

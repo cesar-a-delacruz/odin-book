@@ -13,32 +13,36 @@ export default function UserList({ endpoint, action }) {
 
   return (
     <div className={styles.container}>
-      {users.data.map((user) => (
-        <div
-          className={styles.user}
-          key={user.id}
-          onClick={() => navigate("/profile", { state: { id: user.id } })}
-        >
-          <Avatar src={user.image} alt={user.username} />
-          <div className={styles.text}>
-            <span className={styles.username}>@{user.username}</span>
-            <span className={styles.bio}>{user.bio}</span>
-          </div>
-          {action && (
-            <div
-              className={styles.action}
-              onClick={(event) => {
-                action.handler();
-                event.stopPropagation();
-              }}
-            >
-              {action.icon}
-              <span>{action.text}</span>
+      <div className={styles.items}>
+        {users.data.map((user) => (
+          <div
+            className={styles.user}
+            key={user.id}
+            onClick={() => navigate("/profile", { state: { id: user.id } })}
+          >
+            <Avatar src={user.image} alt={user.username} />
+            <div className={styles.text}>
+              <span className={styles.username}>@{user.username}</span>
+              <span className={styles.bio}>{user.bio}</span>
             </div>
-          )}
-        </div>
-      ))}
-      <button
+            {action && (
+              <div
+                className={styles.action}
+                onClick={(event) => {
+                  action.handler();
+                  event.stopPropagation();
+                }}
+              >
+                {action.icon}
+                <span>{action.text}</span>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <p
+        className={styles.loader}
         onClick={async () => {
           const more = await requestHandler.get(
             `${endpoint}?q=${users.data[users.data.length - 1].id}`,
@@ -52,8 +56,8 @@ export default function UserList({ endpoint, action }) {
           });
         }}
       >
-        fetch more
-      </button>
+        Load more
+      </p>
     </div>
   );
 }
