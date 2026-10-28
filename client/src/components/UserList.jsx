@@ -1,3 +1,4 @@
+import componentStyles from "@/utils/css/modules/listComponent.module.css";
 import styles from "./styles/UserList.module.css";
 import { useNavigate } from "react-router-dom";
 import Avatar from "./Avatar";
@@ -12,11 +13,11 @@ export default function UserList({ endpoint, action }) {
   const [users, setUsers] = useState(initialUsers);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.items}>
+    <div className={`${styles.list} ${componentStyles.container}`}>
+      <div className={`${styles.users} ${componentStyles.items}`}>
         {users.data.map((user) => (
           <div
-            className={styles.user}
+            className={`${styles.user} ${componentStyles.item}`}
             key={user.id}
             onClick={() => navigate("/profile", { state: { id: user.id } })}
           >
@@ -42,7 +43,7 @@ export default function UserList({ endpoint, action }) {
       </div>
 
       <p
-        className={styles.loader}
+        className={componentStyles.loader}
         onClick={async () => {
           const more = await requestHandler.get(
             `${endpoint}?q=${users.data[users.data.length - 1].id}`,

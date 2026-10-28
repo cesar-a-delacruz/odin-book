@@ -1,31 +1,8 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap-1);
-  background-color: var(--color-background-2);
-  border-radius: var(--border-radius-1);
-  padding: var(--padding);
+.commentList {
   width: fit-content;
 
-  .items {
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap-1);
-    padding-bottom: var(--padding);
-    border-bottom: var(--border);
-
+  .comments {
     .comment {
-      display: flex;
-      align-items: center;
-      gap: var(--gap-1);
-      font-size: var(--font-size-1);
-      padding: var(--padding);
-      border-radius: var(--border-radius-1);
-
-      &:active {
-        background-color: var(--color-background-3);
-      }
-
       .text {
         display: flex;
         flex-direction: column;
@@ -43,18 +20,6 @@
           color: var(--color-text-2);
         }
       }
-    }
-  }
-
-  .loader {
-    text-align: center;
-    color: var(--color-text-2);
-    margin: 0;
-    margin-bottom: var(--margin);
-    cursor: pointer;
-
-    &:hover {
-      color: var(--color-text);
     }
   }
 }

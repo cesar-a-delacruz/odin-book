@@ -1,3 +1,4 @@
+import componentStyles from "@/utils/css/modules/listComponent.module.css";
 import styles from "./styles/CommentList.module.css";
 import { useNavigate } from "react-router-dom";
 import { use, useState } from "react";
@@ -12,11 +13,11 @@ export default function CommentList({ endpoint, sendToPost = true }) {
   const [comments, setComments] = useState(initialComments);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.items}>
+    <div className={`${styles.commentList} ${componentStyles.container}`}>
+      <div className={`${styles.comments} ${componentStyles.items}`}>
         {comments.data.map((comment) => (
           <div
-            className={styles.comment}
+            className={`${styles.comment} ${componentStyles.item}`}
             key={comment.id}
             onClick={() => {
               if (!sendToPost) return;
@@ -43,7 +44,7 @@ export default function CommentList({ endpoint, sendToPost = true }) {
         ))}
       </div>
       <p
-        className={styles.loader}
+        className={componentStyles.loader}
         onClick={async () => {
           const more = await requestHandler.get(
             `${endpoint}?q=${comments.data[comments.data.length - 1].id}`,
