@@ -3,17 +3,10 @@ import { screen, waitFor } from "@testing-library/react";
 import { act } from "react";
 import setRoute from "../setRoute";
 import * as fetchData from "@/utils/js/fetchData";
+import requestHandler from "@/handlers/requestHandler";
 
-vi.mock("react-router-dom", async () => {
-  const actual = await vi.importActual("react-router-dom");
-  return {
-    ...actual,
-    useLocation: () => ({
-      state: { id: "profile" },
-    }),
-  };
-});
-const path = "/profile";
+const userProfile = (await requestHandler.get("user")).data[0];
+const path = `/profile/${userProfile.username}`;
 
 describe("Profile", () => {
   test("loads posts section", async () => {

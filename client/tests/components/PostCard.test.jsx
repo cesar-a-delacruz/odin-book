@@ -13,7 +13,8 @@ vi.mock("react-router-dom", async () => {
 });
 
 const userProfile = (await requestHandler.get("user")).data[0];
-const post = (await requestHandler.get(`post/user/${userProfile.id}`)).data[3];
+const post = (await requestHandler.get(`post/user/${userProfile.username}`))
+  .data[3];
 const path = "post";
 const postId = post.id;
 

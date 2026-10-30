@@ -6,7 +6,8 @@ import * as fetchData from "@/utils/js/fetchData";
 import requestHandler from "@/handlers/requestHandler";
 
 const userProfile = (await requestHandler.get("user")).data[0];
-const post = (await requestHandler.get(`post/user/${userProfile.id}`)).data[3];
+const post = (await requestHandler.get(`post/user/${userProfile.username}`))
+  .data[3];
 
 vi.mock("react-router-dom", async () => {
   const actual = await vi.importActual("react-router-dom");

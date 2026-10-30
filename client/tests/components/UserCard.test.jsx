@@ -17,12 +17,12 @@ vi.mock("react-router-dom", async () => {
 
 const userProfile = (await requestHandler.get("user")).data[0];
 const path = "user/";
-const userId = userProfile.id;
+const username = userProfile.username;
 
 describe("UserCard", () => {
   test("loads user", async () => {
     await act(async () => {
-      render(<UserCard endpoint={`${path}${userId}`} />);
+      render(<UserCard endpoint={`${path}${username}`} />);
     });
 
     await waitFor(() => {
@@ -42,7 +42,7 @@ describe("UserCard", () => {
     await act(() => {
       render(
         <ErrorBoundary fallbackRender={(props) => <ErrorMessage {...props} />}>
-          <UserCard endpoint={`${path}${userId}`} />
+          <UserCard endpoint={`${path}${username}`} />
         </ErrorBoundary>,
       );
     });
