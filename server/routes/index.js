@@ -5,32 +5,32 @@ const authorizationMiddleware = require("../middlewares/authorizationMiddleware"
 module.exports = {
   user: new Router(controllers.user)
     .route("get", "findAll", "")
-    .route("get", "findOne", ":username", authorizationMiddleware),
-  // .route("post", "create", "")
+    .route("get", "findOne", ":username", authorizationMiddleware)
+    .route("post", "create", ""),
   // .route("put", "update", ":id")
   // .route("delete", "delete", ":id"),
   post: new Router(controllers.post)
     .route("get", "findAll", "")
     .route("get", "findAllByUser", "user/:username", authorizationMiddleware)
-    .route("get", "findOne", ":id"),
-  // .route("post", "create", "")
+    .route("get", "findOne", ":id")
+    .route("post", "create", "", authorizationMiddleware),
   // .route("put", "update", ":id")
   // .route("delete", "delete", ":id"),
   comment: new Router(controllers.comment)
     .route("get", "findAllByUser", "user/:username", authorizationMiddleware)
-    .route("get", "findAllByPost", "post/:postId"),
-  // .route("post", "create", "")
+    .route("get", "findAllByPost", "post/:postId")
+    .route("post", "create", "", authorizationMiddleware),
   // .route("put", "update", ":id")
   // .route("delete", "delete", ":id"),
-  like: new Router(controllers.like),
-  // .route("post", "create", "")
-  // .route("delete", "delete", ":id"),
-  follower: new Router(controllers.follower).route(
-    "get",
-    "findAllByFollower",
+  like: new Router(controllers.like).route(
+    "post",
+    "create",
     "",
     authorizationMiddleware,
   ),
-  // .route("post", "create", "")
+  // .route("delete", "delete", ":id"),
+  follower: new Router(controllers.follower)
+    .route("get", "findAllByFollower", "", authorizationMiddleware)
+    .route("post", "create", "", authorizationMiddleware),
   // .route("delete", "delete", ":id"),
 };
