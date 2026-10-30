@@ -50,6 +50,9 @@
   --color-text-3: rgb(130, 130, 130);
   --border: var(--border-size) var(--color-background-4) solid;
   --outline: var(--border-size) var(--color-text) solid;
+  --color-error-background: rgb(56, 0, 0);
+  --color-error-border: rgb(132, 0, 0);
+  --border-error: var(--border-size) var(--color-error-border) solid;
 }
 
 :root[data-theme="ligth"] {
@@ -64,4 +67,7 @@
   --color-text-3: rgb(125, 125, 125);
   --border: var(--border-size) var(--color-background-4) solid;
   --outline: var(--border-size) var(--color-text) solid;
+  --color-error-background: rgb(253, 190, 190);
+  --color-error-border: rgb(184, 135, 135);
+  --border-error: var(--border-size) var(--color-error-border) solid;
 }

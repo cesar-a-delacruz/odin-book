@@ -9,13 +9,13 @@ form {
   border: var(--border);
   min-width: fit-content;
 
-  /* span {
+  span {
     white-space: pre-line;
-    background-color: var(--color-error-dark);
-    border: 1px var(--color-error-light) solid;
+    background-color: var(--color-error-background);
+    border: var(--border-error);
     padding: var(--padding);
     border-radius: var(--border-radius);
-  } */
+  }
 
   .fieldsets {
     display: flex;
