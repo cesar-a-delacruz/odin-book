@@ -5,7 +5,6 @@ const authorizationMiddleware = require("../middlewares/authorizationMiddleware"
 module.exports = {
   user: new Router(controllers.user)
     .route("get", "findAll", "")
-    // .route("get", "findAllByFollower", "follower", authorizationMiddleware)
     .route("get", "findOne", ":username", authorizationMiddleware),
   // .route("post", "create", "")
   // .route("put", "update", ":id")
@@ -18,7 +17,6 @@ module.exports = {
   // .route("put", "update", ":id")
   // .route("delete", "delete", ":id"),
   comment: new Router(controllers.comment)
-    .route("get", "findAll", "")
     .route("get", "findAllByUser", "user/:username", authorizationMiddleware)
     .route("get", "findAllByPost", "post/:postId"),
   // .route("post", "create", "")
