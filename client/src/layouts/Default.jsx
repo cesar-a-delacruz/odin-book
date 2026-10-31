@@ -12,6 +12,7 @@ import {
   UserIcon,
   UserXIcon,
 } from "lucide-react";
+import Alert from "@/components/Alert";
 
 export default function Default() {
   const { changeTheme } = useContext(ThemeContext);
@@ -68,6 +69,7 @@ export default function Default() {
       <main>
         <Outlet />
       </main>
+      <Alert />
       <footer>
         <p>
           Developed by{" "}

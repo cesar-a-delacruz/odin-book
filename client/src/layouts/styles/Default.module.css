@@ -39,6 +39,7 @@
     bottom: 0;
     z-index: 1;
     border-top: var(--border);
+    anchor-name: --alert;
 
     p {
       font-size: var(--font-size);

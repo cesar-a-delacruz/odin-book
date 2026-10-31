@@ -1,0 +1,37 @@
+.alert {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap);
+  padding: var(--padding);
+  position: absolute;
+  background-color: var(--color-background-1);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  margin-bottom: var(--margin);
+  position-anchor: --alert;
+  bottom: anchor(top);
+  position-area: top;
+  z-index: 1;
+
+  p {
+    white-space: pre-line;
+    max-width: var(--size-1);
+  }
+
+  svg {
+    text-align: center;
+    width: var(--svg-size-1);
+    height: var(--svg-size-1);
+  }
+
+  .close {
+    stroke: var(--color-text-2);
+    width: var(--svg-size);
+    height: var(--svg-size);
+
+    &:hover {
+      stroke: var(--color-text);
+    }
+  }
+}

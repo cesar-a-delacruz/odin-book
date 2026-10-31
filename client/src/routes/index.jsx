@@ -17,6 +17,7 @@ export default createBrowserRouter([
   {
     path: "/",
     element: <Default />,
+    errorElement: <ErrorMessage />,
     children: [
       {
         path: "",
@@ -39,6 +40,7 @@ export default createBrowserRouter([
   {
     path: "/",
     element: <Auth />,
+    errorElement: <ErrorMessage />,
     children: [
       { path: "register", element: <Register /> },
       { path: "login", element: <Login /> },

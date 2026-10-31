@@ -53,6 +53,9 @@
   --color-error-background: rgb(56, 0, 0);
   --color-error-border: rgb(132, 0, 0);
   --border-error: var(--border-size) var(--color-error-border) solid;
+  --color-success-background: rgb(0, 56, 28);
+  --color-success-border: rgb(0, 132, 70);
+  --border-success: var(--border-size) var(--color-success-border) solid;
 }
 
 :root[data-theme="ligth"] {
@@ -70,4 +73,7 @@
   --color-error-background: rgb(253, 190, 190);
   --color-error-border: rgb(184, 135, 135);
   --border-error: var(--border-size) var(--color-error-border) solid;
+  --color-success-background: rgb(190, 253, 217);
+  --color-success-border: rgb(135, 184, 150);
+  --border-success: var(--border-size) var(--color-success-border) solid;
 }

@@ -47,6 +47,7 @@
   }
 
   footer {
+    anchor-name: --alert;
     text-align: center;
     background-color: var(--color-background-1);
     display: flex;

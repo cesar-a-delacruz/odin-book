@@ -9,14 +9,6 @@ form {
   border: var(--border);
   min-width: fit-content;
 
-  span {
-    white-space: pre-line;
-    background-color: var(--color-error-background);
-    border: var(--border-error);
-    padding: var(--padding);
-    border-radius: var(--border-radius);
-  }
-
   .fieldsets {
     display: flex;
     flex-wrap: wrap;

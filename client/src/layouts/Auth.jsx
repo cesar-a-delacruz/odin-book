@@ -2,6 +2,7 @@ import "@/utils/css/layouts.css";
 import styles from "./styles/Auth.module.css";
 import { Outlet } from "react-router-dom";
 import { BookUserIcon } from "lucide-react";
+import Alert from "@/components/Alert";
 
 export default function Auth() {
   return (
@@ -28,6 +29,7 @@ export default function Auth() {
           <Outlet />
         </main>
       </div>
+      <Alert />
       <footer>
         <p>
           Developed by{" "}

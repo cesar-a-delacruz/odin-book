@@ -10,7 +10,6 @@ export default function Form({
   submit = { text, handler, disable },
 }) {
   const [data, setData] = useState(initialData);
-  const [error, setError] = useState();
   const [disableSubmit, setDisableSubmit] = useState(submit.disable);
 
   useEffect(() => {
@@ -35,7 +34,6 @@ export default function Form({
           </fieldset>
         ))}
       </div>
-      {error && <span>{error}</span>}
       <button
         type="submit"
         style={{
@@ -57,11 +55,9 @@ export default function Form({
 
     if (compare(newData, initialData)) setDisableSubmit(true);
     else setDisableSubmit(false);
-    if (error) setError("");
   }
   async function submitHandler(event) {
     event.preventDefault();
     const result = await submit.handler(data);
-    if (result.error) setError(result.error);
   }
 }
