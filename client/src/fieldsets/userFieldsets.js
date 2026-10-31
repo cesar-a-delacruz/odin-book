@@ -6,7 +6,7 @@ const fields = [
     type: "text",
   },
   {
-    id: "name",
+    id: "fullname",
     placeholder: "John Smith",
     label: "Name",
     type: "text",
