@@ -1,5 +1,5 @@
-const routes = require("../routes/index.js");
-const controller = require("../controllers/index.js").user;
+const routes = require("../../routes/index.js");
+const controller = require("../../controllers/index.js").user;
 const request = require("supertest");
 const express = require("express");
 
@@ -13,12 +13,11 @@ for (const route in routes) {
 
 const findAll = controller.repository.findAll;
 const findOne = controller.repository.findOne;
-afterEach(() => {
-  controller.repository.findAll = findAll;
-  controller.repository.findOne = findOne;
-});
 
 describe("GET user", () => {
+  afterEach(() => {
+    controller.repository.findAll = findAll;
+  });
   test("success", async () => {
     const response = await request(app).get(`/${routes.user.basePath}`);
     expect(response.status).toBe(200);
@@ -33,6 +32,9 @@ describe("GET user", () => {
 });
 
 describe("GET user/:username", () => {
+  afterEach(() => {
+    controller.repository.findOne = findOne;
+  });
   test("success", async () => {
     const user = (await request(app).get("/user")).body.data[0];
     const response = await request(app).get(

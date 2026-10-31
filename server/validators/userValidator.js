@@ -51,7 +51,4 @@ module.exports = checkSchema({
     },
     optional: true,
   },
-  image: {
-    optional: true,
-  },
 });
