@@ -20,12 +20,11 @@ dialog:open {
   padding: var(--padding-1);
 
   h2,
-  button,
   svg {
     margin: 0 !important;
   }
 
-  button {
+  svg {
     background-color: var(--color-background-2);
     padding: var(--padding) var(--padding-1);
     border: var(--border);

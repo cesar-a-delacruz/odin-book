@@ -1,3 +1,4 @@
+import { XIcon } from "lucide-react";
 import styles from "./styles/Dialog.module.css";
 
 export default function Dialog({ name, ref, children }) {
@@ -5,14 +6,12 @@ export default function Dialog({ name, ref, children }) {
     <dialog ref={ref}>
       <div className={styles.top}>
         {name && <h2>{name}</h2>}
-        <button
+        <XIcon
           onClick={(event) => {
             event.currentTarget.parentElement.parentElement.close();
             event.stopPropagation();
           }}
-        >
-          X
-        </button>
+        />
       </div>
       <div className={styles.bottom}>{children}</div>
     </dialog>
