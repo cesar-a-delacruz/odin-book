@@ -1,6 +1,6 @@
 import styles from "./styles/TextForm.module.css";
 import { useState } from "react";
-import { clean } from "@/utils/js/objects";
+import { clean, compare } from "@/utils/js/objects";
 import TextFormField from "./TextFormField";
 import { PlusIcon } from "lucide-react";
 
@@ -26,7 +26,10 @@ export default function TextForm({
       <div className={styles.actions}>
         <button
           disabled={disableSubmit}
-          onClick={async () => await submitHandler(data)}
+          onClick={async () => {
+            await submitHandler(data);
+            setData({});
+          }}
         >
           <PlusIcon />
         </button>
@@ -49,7 +52,7 @@ export default function TextForm({
       [id]: value,
     });
     setData(newData);
-    if (!newData.content) setDisableSubmit(true);
+    if (compare(newData, initialData)) setDisableSubmit(true);
     else setDisableSubmit(false);
   }
 }
