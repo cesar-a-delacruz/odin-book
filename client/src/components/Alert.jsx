@@ -1,12 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import styles from "./styles/Alert.module.css";
-import {
-  CheckCircle2Icon,
-  CheckCircleIcon,
-  InfoIcon,
-  XCircleIcon,
-  XIcon,
-} from "lucide-react";
+import { CheckCircle2Icon, InfoIcon, XCircleIcon, XIcon } from "lucide-react";
 import { AlertContext } from "@/contexts/AlertContext";
 
 export default function Alert() {

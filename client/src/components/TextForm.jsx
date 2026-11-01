@@ -4,7 +4,12 @@ import { clean } from "@/utils/js/objects";
 import TextFormField from "./TextFormField";
 import { PlusIcon } from "lucide-react";
 
-export default function TextForm({ fields = [], initialData, actions = [] }) {
+export default function TextForm({
+  fields = [],
+  initialData,
+  actions = [],
+  submitHandler,
+}) {
   const [data, setData] = useState(initialData);
   const [disableSubmit, setDisableSubmit] = useState(true);
 
@@ -19,11 +24,18 @@ export default function TextForm({ fields = [], initialData, actions = [] }) {
         />
       ))}
       <div className={styles.actions}>
-        <button disabled={disableSubmit}>
+        <button
+          disabled={disableSubmit}
+          onClick={async () => await submitHandler(data)}
+        >
           <PlusIcon />
         </button>
         {actions.map((a) => (
-          <button disabled={disableSubmit} key={a.icon}>
+          <button
+            disabled={disableSubmit}
+            onClick={() => a.handler()}
+            key={a.icon}
+          >
             {a.icon}
           </button>
         ))}
@@ -31,7 +43,7 @@ export default function TextForm({ fields = [], initialData, actions = [] }) {
     </div>
   );
 
-  function changeHandler(id, value) {
+  async function changeHandler(id, value) {
     const newData = clean({
       ...data,
       [id]: value,

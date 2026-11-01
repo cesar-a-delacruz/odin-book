@@ -3,6 +3,7 @@
   background-color: var(--color-background-2);
   border-radius: var(--border-radius-1);
   max-width: var(--size);
+  width: calc(100% - var(--padding-1));
   min-width: var(--size-2);
 
   .user {

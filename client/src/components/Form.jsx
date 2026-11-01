@@ -58,6 +58,6 @@ export default function Form({
   }
   async function submitHandler(event) {
     event.preventDefault();
-    const result = await submit.handler(data);
+    await submit.handler(data);
   }
 }

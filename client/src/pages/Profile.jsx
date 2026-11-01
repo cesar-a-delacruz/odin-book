@@ -1,6 +1,6 @@
 import pageStyles from "@/utils/css/modules/defaultPage.module.css";
 import styles from "./styles/Profile.module.css";
-import { Suspense, use, useState } from "react";
+import { Suspense, use, useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { create } from "@/fieldsets/postFieldsets";
 import PostCard from "@/components/PostCard";
@@ -13,6 +13,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import ErrorMessage from "@/components/ErrorMessage";
 import { ImagePlusIcon } from "lucide-react";
 import requestHandler from "@/handlers/requestHandler";
+import { AlertContext } from "@/contexts/AlertContext";
 
 export default function Profile() {
   document.title = `${import.meta.env.VITE_TITLE}: Profile`;
@@ -22,6 +23,7 @@ export default function Profile() {
   const initialPosts = use(fetchData(`post/user${pathEnd}`));
   if (initialPosts.error) throw Error(initialPosts.error);
   const [posts, setPosts] = useState(initialPosts);
+  const { setAlert } = useContext(AlertContext);
 
   document.onscroll = async () => {
     if (document.documentElement.scrollTop === 0) return;
@@ -33,7 +35,7 @@ export default function Profile() {
       const more = await requestHandler.get(
         `post/user${pathEnd}?q=${posts.data[posts.data.length - 1].id}`,
       );
-      if (more.error) return alert(more.error);
+      if (more.error) return setAlert({ text: more.error, type: "error" });
 
       setPosts((prev) => {
         const newPosts = structuredClone(prev);
@@ -58,6 +60,7 @@ export default function Profile() {
           fields={create[0].fields}
           initialData={{}}
           actions={[{ icon: <ImagePlusIcon /> }]}
+          submitHandler={submitPost}
         />
         {posts.data.length ? (
           posts.data.map((p) => (
@@ -82,4 +85,20 @@ export default function Profile() {
       </section>
     </div>
   );
+
+  async function submitPost(data) {
+    const response = await requestHandler.post(data, "post");
+    let alert = { text: "Post published successfully.", type: "success" };
+
+    if (response.error) alert = { text: response.error, type: "error" };
+    else
+      setPosts((prev) => {
+        const newPosts = structuredClone(prev);
+        newPosts.data = [response.data, ...newPosts.data];
+        return newPosts;
+      });
+    setAlert(alert);
+
+    return response;
+  }
 }
