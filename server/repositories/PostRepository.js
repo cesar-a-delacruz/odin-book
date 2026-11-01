@@ -91,4 +91,24 @@ module.exports = class PostRepository extends Repository {
       omit: { userId: true },
     });
   };
+  create = async (data) => {
+    return await this.entity.model.create({
+      data: this.entity.parseData(data),
+      include: {
+        user: {
+          select: {
+            id: true,
+            username: true,
+            image: true,
+          },
+        },
+        _count: {
+          select: {
+            likes: true,
+            comments: true,
+          },
+        },
+      },
+    });
+  };
 };

@@ -15,13 +15,4 @@ module.exports = checkSchema({
       }),
     },
   },
-  image: {
-    optional: true,
-  },
-  userId: {
-    isEmpty: {
-      negated: true,
-      errorMessage: formatValidationError("empty", "userId"),
-    },
-  },
 });

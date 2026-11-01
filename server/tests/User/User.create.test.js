@@ -39,7 +39,7 @@ describe("POST user/", () => {
   });
 
   // username validation
-  test("failure 422 username length empty", async () => {
+  test("failure 422 username empty", async () => {
     controller.repository.create = jest.fn().mockImplementationOnce(() => user);
     const { username, ...testUser } = user;
     const response = await request(app)
@@ -66,7 +66,7 @@ describe("POST user/", () => {
   });
 
   // fullname validation
-  test("failure 422 fullname length empty", async () => {
+  test("failure 422 fullname empty", async () => {
     controller.repository.create = jest.fn().mockImplementationOnce(() => user);
     const { fullname, ...testUser } = user;
     const response = await request(app)
@@ -93,7 +93,7 @@ describe("POST user/", () => {
   });
 
   // password validation
-  test("failure 422 password length empty", async () => {
+  test("failure 422 password empty", async () => {
     controller.repository.create = jest.fn().mockImplementationOnce(() => user);
     const { password, ...testUser } = user;
     const response = await request(app)

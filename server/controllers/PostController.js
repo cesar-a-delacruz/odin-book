@@ -26,6 +26,12 @@ module.exports = class PostController extends CRUDController {
       const username = req.params.username || req.user.username;
       const rows = await this.repository.findAllByUser(username, req.query.q);
 
+      if (!rows.length)
+        return res
+          .status(404)
+          .json({ error: `No ${this.itemName} have been found.` })
+          .end();
+
       console.table(rows);
       return res.status(200).json({ data: rows }).end();
     } catch (error) {
@@ -36,4 +42,23 @@ module.exports = class PostController extends CRUDController {
         .end();
     }
   };
+  create = [
+    async (req, res, next) => await this.validator(req, res, next),
+    async (req, res) => {
+      try {
+        const row = await this.repository.create({
+          ...req.body,
+          userId: req.user.id,
+        });
+        console.info(row);
+        return res.status(201).json({ data: row }).end();
+      } catch (error) {
+        console.error(error);
+        return res
+          .status(500)
+          .json({ error: `Failed to create ${this.itemName}.` })
+          .end();
+      }
+    },
+  ];
 };
