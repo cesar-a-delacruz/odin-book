@@ -1,5 +1,5 @@
-const routes = require("../routes/index.js");
-const controller = require("../controllers/index.js").comment;
+const routes = require("../../routes/index.js");
+const controller = require("../../controllers/index.js").comment;
 const request = require("supertest");
 const express = require("express");
 

@@ -45,4 +45,23 @@ module.exports = class CommentController extends CRUDController {
         .end();
     }
   };
+  create = [
+    async (req, res, next) => await this.validator(req, res, next),
+    async (req, res) => {
+      try {
+        const row = await this.repository.create({
+          ...req.body,
+          userId: req.user.id,
+        });
+        console.info(row);
+        return res.status(201).json({ data: row }).end();
+      } catch (error) {
+        console.error(error);
+        return res
+          .status(500)
+          .json({ error: `Failed to create ${this.itemName}.` })
+          .end();
+      }
+    },
+  ];
 };

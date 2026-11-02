@@ -15,12 +15,6 @@ module.exports = checkSchema({
       }),
     },
   },
-  userId: {
-    isEmpty: {
-      negated: true,
-      errorMessage: formatValidationError("empty", "userId"),
-    },
-  },
   postId: {
     isEmpty: {
       negated: true,

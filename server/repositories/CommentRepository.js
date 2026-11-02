@@ -65,4 +65,21 @@ module.exports = class CommentRepository extends Repository {
       },
     });
   };
+  create = async (data) => {
+    return await this.entity.model.create({
+      data: this.entity.parseData(data),
+      include: {
+        user: {
+          select: {
+            id: true,
+            username: true,
+            image: true,
+          },
+        },
+      },
+      omit: {
+        userId: true,
+      },
+    });
+  };
 };

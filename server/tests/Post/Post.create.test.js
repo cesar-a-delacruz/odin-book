@@ -31,10 +31,10 @@ describe("POST post/", () => {
   // content validation
   test("failure 422 content empty", async () => {
     controller.repository.create = jest.fn().mockImplementationOnce(() => post);
-    const { content, ...testUser } = post;
+    const { content, ...testPost } = post;
     const response = await request(app)
       .post(`/${routes.post.basePath}`)
-      .send({ ...testUser });
+      .send({ ...testPost });
     expect(response.status).toBe(422);
   });
   test("failure 422 content length min", async () => {
