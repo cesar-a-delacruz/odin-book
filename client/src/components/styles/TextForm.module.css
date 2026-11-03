@@ -4,12 +4,13 @@
   border-radius: var(--border-radius-1);
 
   .actions {
-    padding: var(--padding);
+    display: flex;
 
     button {
       border-style: none;
       background-color: unset;
       cursor: pointer;
+      padding: var(--padding);
 
       &:hover {
         * {

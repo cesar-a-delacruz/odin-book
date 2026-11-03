@@ -13,4 +13,26 @@
     color: var(--color-text);
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: var(--gap);
+    font-size: var(--font-size-1);
+    background-color: var(--color-background-2);
+    padding: var(--padding) var(--padding-1);
+    border: var(--border);
+    border-radius: var(--border-radius);
+
+    &:hover {
+      background-color: var(--color-background-3);
+    }
+    &:active {
+      background-color: var(--color-background-4);
+    }
+    &:focus {
+      border-color: var(--color-text);
+      outline: var(--outline);
+    }
+  }
 }

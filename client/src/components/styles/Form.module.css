@@ -38,24 +38,6 @@ form {
       }
     }
   }
-
-  button {
-    background-color: var(--color-background-2);
-    padding: var(--padding) var(--padding-1);
-    border: var(--border);
-    border-radius: var(--border-radius);
-
-    &:hover {
-      background-color: var(--color-background-3);
-    }
-    &:active {
-      background-color: var(--color-background-4);
-    }
-    &:focus {
-      border-color: var(--color-text);
-      outline: var(--outline);
-    }
-  }
 }
 
 @media (max-aspect-ratio: 3/4) or (max-width: 1024px) {

@@ -2,6 +2,7 @@ import styles from "./styles/UserCard.module.css";
 import Image from "./Image";
 import { use } from "react";
 import { fetchData } from "@/utils/js/fetchData";
+import { PlusIcon } from "lucide-react";
 
 export default function UserCard({ endpoint }) {
   const user = use(fetchData(endpoint));
@@ -33,6 +34,10 @@ export default function UserCard({ endpoint }) {
           <span className={styles.text}>posts</span>
         </div>
       </div>
+
+      <button>
+        <PlusIcon /> Follow
+      </button>
     </div>
   );
 }
