@@ -4,10 +4,11 @@ import { act } from "react";
 import setRoute from "../setRoute";
 import * as fetchData from "@/utils/js/fetchData";
 import requestHandler from "@/handlers/requestHandler";
+import userEvent from "@testing-library/user-event";
 
 const userProfile = (await requestHandler.get("user")).data[0];
 const post = (await requestHandler.get(`post/user/${userProfile.username}`))
-  .data[3];
+  .data[0];
 
 vi.mock("react-router-dom", async () => {
   const actual = await vi.importActual("react-router-dom");
@@ -21,6 +22,9 @@ vi.mock("react-router-dom", async () => {
 const path = "/post";
 
 describe("Post", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
   test("loads post section", async () => {
     await act(async () => {
       setRoute(path);
@@ -30,7 +34,6 @@ describe("Post", () => {
       expect(section.children.length).toBe(1);
     });
   });
-
   test("displays error message when fetchData fails", async () => {
     vi.spyOn(fetchData, "fetchData").mockReturnValue(
       new Promise((resolve, reject) => {
@@ -45,5 +48,24 @@ describe("Post", () => {
     });
     const message = await screen.findByText("Failed to find any post.");
     expect(message.innerHTML).toBe("Failed to find any post.");
+  });
+  test("submitComment", async () => {
+    await act(async () => {
+      setRoute(path);
+    });
+    await waitFor(async () => {
+      const user = userEvent.setup();
+
+      const content = document.getElementById("content");
+      await user.type(content, "fake content");
+
+      const commentButton = document.querySelector(
+        "section > div button:first-of-type",
+      );
+      await user.click(commentButton);
+    });
+    const alert = await screen.findByText("Comment published successfully.");
+
+    expect(alert).toBeInTheDocument();
   });
 });

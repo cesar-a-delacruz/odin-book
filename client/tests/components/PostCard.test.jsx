@@ -12,17 +12,9 @@ vi.mock("react-router-dom", async () => {
   };
 });
 
-/* 
-the submitPost test runs before and creates a post 
-with no image thats why the post to test is the third and 
-the most recent post has 3 children
-*/
-
 const userProfile = (await requestHandler.get("user")).data[0];
 const post = (await requestHandler.get(`post/user/${userProfile.username}`))
   .data[2];
-// const post = (await requestHandler.get(`post/user/${userProfile.username}`))
-//   .data[3];
 const path = "post";
 const postId = post.id;
 
@@ -36,8 +28,7 @@ describe("PostCard", () => {
     await waitFor(() => {
       const postCard = document.querySelector("body > div > div");
 
-      // expect(postCard.children.length).toBe(4);
-      expect(postCard.children.length).toBe(3);
+      expect(postCard.children.length).toBe(4);
     });
   });
 });

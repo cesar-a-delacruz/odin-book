@@ -18,7 +18,7 @@ vi.mock("react-router-dom", async () => {
 
 const userProfile = (await requestHandler.get("user")).data[0];
 const post = (await requestHandler.get(`post/user/${userProfile.username}`))
-  .data[3];
+  .data[1];
 const postId = post.id;
 const path = "comment/post/";
 
@@ -30,7 +30,7 @@ describe("CommentList", () => {
 
     await waitFor(() => {
       const comments = document.querySelector("body > div > div > div");
-      expect(comments.children.length).toBe(2);
+      expect(comments.children.length).toBe(1);
     });
   });
 
