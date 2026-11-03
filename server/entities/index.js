@@ -29,6 +29,6 @@ module.exports = {
   }),
   follower: new Entity(dbConfig.follower, {
     followerId: "string",
-    userId: "string",
+    followedId: "string",
   }),
 };

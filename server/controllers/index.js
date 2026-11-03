@@ -15,5 +15,9 @@ module.exports = {
     validators.comment,
   ),
   like: new CRUDController("like", repositories.like),
-  follower: new FollowerController("follower", repositories.follower),
+  follower: new FollowerController(
+    "follower",
+    repositories.follower,
+    validators.follower,
+  ),
 };
