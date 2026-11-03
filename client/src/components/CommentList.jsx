@@ -1,7 +1,7 @@
 import componentStyles from "@/utils/css/modules/listComponent.module.css";
 import styles from "./styles/CommentList.module.css";
 import { useNavigate } from "react-router-dom";
-import { use, useState } from "react";
+import { use, useEffect, useState } from "react";
 import Avatar from "./Avatar";
 import { fetchData } from "@/utils/js/fetchData";
 import requestHandler from "@/handlers/requestHandler";
@@ -11,6 +11,10 @@ export default function CommentList({ endpoint, sendToPost = true }) {
   const initialComments = use(fetchData(endpoint));
   if (initialComments.error) throw Error(initialComments.error);
   const [comments, setComments] = useState(initialComments);
+
+  useEffect(() => {
+    setComments({ ...initialComments });
+  }, [initialComments.data[0].id]);
 
   return (
     <div className={`${styles.commentList} ${componentStyles.container}`}>

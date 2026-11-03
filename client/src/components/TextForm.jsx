@@ -28,7 +28,14 @@ export default function TextForm({
           disabled={disableSubmit}
           onClick={async () => {
             await submitHandler(data);
-            setData({});
+
+            let newData = {};
+            Object.keys(data).forEach((d) => {
+              const field = fields.find((f) => f.id === d);
+              if (field.type === "hidden") newData[d] = data[d];
+            });
+
+            setData(newData);
           }}
         >
           <PlusIcon />
