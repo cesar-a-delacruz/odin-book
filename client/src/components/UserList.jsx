@@ -27,16 +27,16 @@ export default function UserList({ endpoint, action }) {
               <span className={styles.bio}>{user.bio}</span>
             </div>
             {action && (
-              <div
+              <button
                 className={styles.action}
                 onClick={(event) => {
-                  action.handler();
+                  action.handler(user.id);
                   event.stopPropagation();
                 }}
               >
                 {action.icon}
                 <span>{action.text}</span>
-              </div>
+              </button>
             )}
           </div>
         ))}

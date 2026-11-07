@@ -1,15 +1,16 @@
 import pageStyles from "@/utils/css/modules/defaultPage.module.css";
 import styles from "./styles/Home.module.css";
-import { Suspense, use, useState } from "react";
+import { Suspense, use, useContext, useState } from "react";
 import UserList from "@/components/UserList";
 import PostCard from "@/components/PostCard";
 import { useNavigate } from "react-router-dom";
 import Loader from "@/components/Loader";
-import { fetchData } from "@/utils/js/fetchData";
+import { fetchData, invalidateData } from "@/utils/js/fetchData";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorMessage from "@/components/ErrorMessage";
 import { PlusIcon } from "lucide-react";
 import requestHandler from "@/handlers/requestHandler";
+import { AlertContext } from "@/contexts/AlertContext";
 
 export default function Home() {
   document.title = `${import.meta.env.VITE_TITLE}: Home`;
@@ -18,6 +19,7 @@ export default function Home() {
   const initialPosts = use(fetchData("post"));
   if (initialPosts.error) throw Error(initialPosts.error);
   const [posts, setPosts] = useState(initialPosts);
+  const { setAlert } = useContext(AlertContext);
 
   document.onscroll = async () => {
     if (document.documentElement.scrollTop === 0) return;
@@ -70,11 +72,29 @@ export default function Home() {
           <Suspense fallback={<Loader loadingText={"Loading users..."} />}>
             <UserList
               endpoint={"user"}
-              action={{ text: "Follow", icon: <PlusIcon /> }}
+              action={{
+                text: "Follow",
+                icon: <PlusIcon />,
+                handler: submitFollower,
+              }}
             />
           </Suspense>
         </ErrorBoundary>
       </section>
     </div>
   );
+
+  async function submitFollower(userId) {
+    const response = await requestHandler.post(
+      { followedId: userId },
+      "follower",
+    );
+    let alert = { text: "User followed successfully.", type: "success" };
+
+    if (response.error) alert = { text: response.error, type: "error" };
+    else invalidateData("user");
+    setAlert(alert);
+
+    return response;
+  }
 }

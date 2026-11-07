@@ -1,12 +1,15 @@
 import styles from "./styles/UserCard.module.css";
 import Image from "./Image";
-import { use } from "react";
-import { fetchData } from "@/utils/js/fetchData";
+import { use, useContext } from "react";
+import { fetchData, invalidateData } from "@/utils/js/fetchData";
 import { PlusIcon } from "lucide-react";
+import requestHandler from "@/handlers/requestHandler";
+import { AlertContext } from "@/contexts/AlertContext";
 
 export default function UserCard({ endpoint }) {
   const user = use(fetchData(endpoint));
   if (user.error) throw Error(user.error);
+  const { setAlert } = useContext(AlertContext);
 
   return (
     <div className={styles.container}>
@@ -35,9 +38,23 @@ export default function UserCard({ endpoint }) {
         </div>
       </div>
 
-      <button>
+      <button onClick={submitFollower}>
         <PlusIcon /> Follow
       </button>
     </div>
   );
+
+  async function submitFollower() {
+    const response = await requestHandler.post(
+      { followedId: user.data.id },
+      "follower",
+    );
+    let alert = { text: "User followed successfully.", type: "success" };
+
+    if (response.error) alert = { text: response.error, type: "error" };
+    else invalidateData(endpoint);
+    setAlert(alert);
+
+    return response;
+  }
 }
