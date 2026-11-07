@@ -13,6 +13,7 @@ describe("Profile", () => {
   afterEach(() => {
     vi.restoreAllMocks();
   });
+
   test("loads posts section", async () => {
     await act(async () => {
       setRoute(path);
@@ -48,7 +49,7 @@ describe("Profile", () => {
       await user.type(content, "fake content");
 
       const postButton = document.querySelector(
-        "section > div button:first-of-type",
+        "section:nth-of-type(2) > div:first-of-type button",
       );
       await user.click(postButton);
     });

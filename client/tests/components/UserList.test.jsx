@@ -1,4 +1,4 @@
-import { describe, test, expect, vi } from "vitest";
+import { describe, test, expect, vi, afterEach } from "vitest";
 import { screen, waitFor, render } from "@testing-library/react";
 import * as fetchData from "@/utils/js/fetchData";
 import UserList from "@/components/UserList";
@@ -17,6 +17,10 @@ vi.mock("react-router-dom", async () => {
 const path = "user";
 
 describe("UserList", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   test("loads users", async () => {
     await act(async () => {
       render(<UserList endpoint={path} />);

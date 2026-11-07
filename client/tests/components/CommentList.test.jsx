@@ -1,4 +1,4 @@
-import { describe, test, expect, vi } from "vitest";
+import { describe, test, expect, vi, afterEach } from "vitest";
 import { screen, waitFor, render } from "@testing-library/react";
 import * as fetchData from "@/utils/js/fetchData";
 import CommentList from "@/components/CommentList";
@@ -23,6 +23,10 @@ const postId = post.id;
 const path = "comment/post/";
 
 describe("CommentList", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   test("loads comments", async () => {
     await act(async () => {
       render(<CommentList endpoint={`${path}${postId}`} />);
